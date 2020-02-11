@@ -1,48 +1,59 @@
 #include"liste_livre.h"
 
-// Insére un livre dans la liste
-liste_livre_t inserer_livre(liste_livre_t liste, int numero, char * titre)
-{
-	liste_livre_t * prec = &liste;
-	maillon_livre_t * maillon;
-	maillon = (maillon_livre_t*) malloc(sizeof(maillon_livre_t));
-	if (maillon != NULL)
-	{
-		maillon->numero = numero;
-		strcpy(maillon->titre, titre);
-		while(*prec != NULL && strcmp(titre, (*prec)->titre)>0)
-			prec = &((*prec)->suiv);
-		maillon->suiv = *prec;
-		*prec = maillon;
-	}
-	return liste;
-}
-
-// Lis un livre dans un fichier
-void lire_livre(FILE * file, int * numero, char * titre)
-{
-	fscanf(file, "%d %[^\n]", numero, titre);
-}
-
-// Affiche le livre en tête de la liste
-void afficher_livre(liste_livre_t liste)
-{
-	printf("Numero : %d\nTitre : %s\n------------\n", liste->numero, liste->titre);
-}
-
-// Initialise une liste de livre
-liste_livre_t init_liste_livre(void)
+liste_livres_t		InitListeLivre(void)
 {
 	return NULL;
 }
 
-// Affiche tous les livres de la liste
-void afficher_liste_livre(liste_livre_t liste)
+liste_livres_t *	RechercheLivre(liste_livres_t* liste, int numero)
 {
-	liste_livre_t cour = liste;
-	while(cour != NULL)
+	liste_livres_t * prec;
+	prec = liste;
+	while(*prec != NULL && numero > (*prec)->numero)
 	{
-		afficher_livre(cour);
-		cour = cour->suiv;
+		prec = &((*prec)->suiv);
 	}
+	return prec;
+}
+
+void				InsererLivre(liste_livres_t* liste, int numero, char* titre)
+{
+	liste_livres_t * prec;
+
+	livres_t * maillon;
+	maillon = (livres_t*) malloc(sizeof(livres_t));
+
+	if (maillon != NULL)
+	{
+		maillon->numero = numero;
+		strcpy(maillon->titre, titre);
+		maillon->disponible = 1;
+
+		prec = RechercheLivre(liste, numero);
+
+		maillon->suiv = *prec;
+		*prec = maillon;
+	}
+}
+
+void				AfficherLivre(FILE* fichier, liste_livres_t liste)
+{
+	if (liste != NULL)
+	{
+		fprintf(fichier, "%d %s\n", liste->numero, liste->titre);
+	}
+}
+
+void				AfficherListeLivre(FILE* fichier, liste_livres_t liste)
+{
+	while(liste != NULL)
+	{
+		AfficherLivre(fichier, liste);
+		liste = liste->suiv;
+	}
+}
+
+void				LireLivre(FILE* fichier, int* numero, char* titre)
+{
+	fscanf(fichier, "%d %[^\n]", numero, titre);
 }

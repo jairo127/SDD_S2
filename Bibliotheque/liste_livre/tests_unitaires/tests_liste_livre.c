@@ -4,39 +4,43 @@
 #include <stddef.h>
 #include <cmocka.h>
 
-static void test_liste_vide(void **frame)
-{
-	liste_livre_t liste = init_liste_livre();
-	assert_null(liste);
-}
+char *fichier;
 
 static void test_liste_fichier(void **frame)
 {
-	liste_livre_t liste = init_liste_livre();
+	liste_livres_t liste = InitListeLivre();
 	int numero;
 	char titre[30];
-	assert_null(liste);
 	FILE * file;
-	file = fopen("tests_unitaires/test_livre.txt", "r");
+
+	assert_null(liste);
+	
+	file = fopen(fichier, "r");
+
 	if (file != NULL)
 	{
 		while(!feof(file))
 		{
-			lire_livre(file, &numero, titre);
-			liste = inserer_livre(liste, numero, titre);
+			LireLivre(file, &numero, titre);
+			InsererLivre(&liste, numero, titre);
 		}
+
 		assert_non_null(liste);
+
 		fclose(file);
-		afficher_liste_livre(liste);
+		AfficherListeLivre(stdout, liste);
 	}
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-	
+	if (argc > 1)
+		strcpy(fichier, argv[1]);
+	else
+		fichier = "tests_unitaires/test_livre.txt";
+
 
 	const struct CMUnitTest tests[] = {
-        cmocka_unit_test(test_liste_vide),
         cmocka_unit_test(test_liste_fichier)
     };
 
