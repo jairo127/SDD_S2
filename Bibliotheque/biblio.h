@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-#define TAILLE_MAX 30
+#define TAILLE_MAX 100
 
 /* Utilisation de tetes reelles dans les listes chainees */
 

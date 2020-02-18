@@ -12,7 +12,9 @@ int main(int argc, char * * argv)
     else
     {
         int code = 1;
-    
+        int choix = 0;
+        char tmp;
+
         liste_categories_t biblio = NULL;
         liste_emprunt_t dates = NULL;
 
@@ -20,20 +22,35 @@ int main(int argc, char * * argv)
         if (code)
         {
             RemplirListe(fichier, &biblio);
-            fclose(fichier);
+            do
+            {
+                AfficherMenu();
+                choix = GestionChoix();
+                system("clear");
+                switch(choix)
+                {
+                    case 1:
+                        AfficherBiblio(biblio); break;
+                    case 2:
+                        AfficherDates(dates); break;
+                    case 3:
+                        Emprunter(biblio, dates, &code); break;
+                    case 4:
+                        Rendre(biblio, dates); break;
+                    case 5:
+                        break;
+                    default:
+                        printf("Erreur dans le choix\n"); break;
+                }
+                printf("\n\nAppuyez sur une entrée pour continuer\n");
+                scanf("%c%*c", &tmp);
+                system("clear");
+            } while (choix != 5);
         }
-
-        AfficherBiblio(biblio);
-        InsererEmprunt(biblio, &dates, "POL", 15, 20200312, &code);
-        InsererEmprunt(biblio, &dates, "POL", 17, 20200416, &code);
-        InsererEmprunt(biblio, &dates, "BD", 21, 20200101, &code);
-        //SupprimerEmprunt(biblio, &dates, "POL", 17, 20200416);
-        if (code)
+        else
         {
-        	AfficherBiblio(biblio);
-        	AfficherDates(dates);
+            printf("Erreur de lecture du fichier fourni\n");
         }
     }
-
     return 0;
 }
