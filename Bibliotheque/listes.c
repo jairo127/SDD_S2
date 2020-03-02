@@ -3,21 +3,28 @@
 void AfficherBiblio(liste_categories_t biblio)
 {
     liste_categories_t cour = biblio;
-    liste_livres_t cour_l;  
-    while (cour)
+    liste_livres_t cour_l;
+    if (cour)
     {
-        printf("Nom de la categorie : %s\n", cour->nom);
-        cour_l = cour->liste_livres_categorie;
+    	do
+    	{
+        	printf("Nom de la categorie : %s\n", cour->nom);
+        	cour_l = cour->liste_livres_categorie;
 
-        while (cour_l)
-        {
-            printf("Numero du livre : %d, titre du livre : %s, disponibilite : %d\n", 
-            cour_l->numero, cour_l->titre, cour_l->disponible);
-            cour_l = cour_l->suiv;
-        }
+        	while (cour_l)
+        	{
+            		printf("Numero du livre : %d, titre du livre : %s, disponibilite : %s\n", 
+            		cour_l->numero, cour_l->titre, (cour_l->disponible)?"OUI":"NON");
+            		cour_l = cour_l->suiv;
+        	}
 
-        cour = cour->suiv;
+        	cour = cour->suiv;
+    	} while (cour);
     }
+    else
+    {
+	printf("La bibliothèque est vide !\n");
+    }	
 }
 
 

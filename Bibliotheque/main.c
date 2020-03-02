@@ -26,7 +26,7 @@ int main(int argc, char * * argv)
             {
                 AfficherMenu();
                 choix = GestionChoix();
-                system("clear");
+		system("clear");
                 switch(choix)
                 {
                     case 1:
@@ -34,15 +34,15 @@ int main(int argc, char * * argv)
                     case 2:
                         AfficherDates(dates); break;
                     case 3:
-                        Emprunter(biblio, dates, &code); break;
+                        Emprunter(biblio, &dates, &code); break;
                     case 4:
-                        Rendre(biblio, dates); break;
+                        Rendre(biblio, &dates); break;
                     case 5:
                         break;
                     default:
                         printf("Erreur dans le choix\n"); break;
                 }
-                printf("\n\nAppuyez sur une entrée pour continuer\n");
+                printf("Appuyez sur une entrée pour continuer\n");
                 scanf("%c%*c", &tmp);
                 system("clear");
             } while (choix != 5);

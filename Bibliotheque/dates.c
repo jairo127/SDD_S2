@@ -3,12 +3,19 @@
 void AfficherDates (liste_emprunt_t dates)
 {
     emprunt_t * cour = dates;
-
-    while (cour)
+    printf("cour = %p\n", cour);
+    if (cour) 
     {
-        printf("Numero de livre : %d , date de retour : %ld\n",
-                cour->numero, cour->date_retour);
-        cour = cour->suiv;
+    	do
+    	{
+        	printf("Numero de livre : %d , date de retour : %ld\n",
+        	        cour->numero, cour->date_retour);
+        	cour = cour->suiv;
+    	} while (cour);
+    }
+    else
+    {
+	    printf("Aucun livre n'a été emprunté\n");
     }
 }
 
@@ -72,6 +79,8 @@ void InsererEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom
         *code = 0;
     }
 }
+// deux codes differents : un pour si un livre est deja emprunte, un si un livre n'existe pas
+
 
 void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour)
 {
@@ -92,3 +101,4 @@ void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char n
         (*adr) -> disponible = 1;
     }
 }
+// si (*adr)->disponible = 0, afficher message d'erreur, ou bien si on veut rendre un livre qui n'existe pas

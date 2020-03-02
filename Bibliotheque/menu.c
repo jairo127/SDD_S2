@@ -13,7 +13,7 @@ int GestionChoix()
     return choix;
 }
 
-void Emprunter(liste_categories_t biblio, liste_emprunt_t dates, int * code)
+void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, int * code)
 {
     char ligne[TAILLE_MAX];
     char nom[4];
@@ -31,7 +31,7 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t dates, int * code)
         {
             fgets(ligne, TAILLE_MAX, emprunts);
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-            InsererEmprunt(biblio, &dates, nom, numero, date_retour, code);
+            InsererEmprunt(biblio, dates, nom, numero, date_retour, code);
         }
         if (!code)
         {
@@ -40,7 +40,7 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t dates, int * code)
     }
 }
 
-void Rendre(liste_categories_t biblio, liste_emprunt_t dates)
+void Rendre(liste_categories_t biblio, liste_emprunt_t * dates)
 {
     char ligne[TAILLE_MAX];
     char nom[4];
@@ -58,7 +58,7 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t dates)
         {
             fgets(ligne, TAILLE_MAX, rendus);
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-            SupprimerEmprunt(biblio, &dates, nom, numero, date_retour);
+            SupprimerEmprunt(biblio, dates, nom, numero, date_retour);
         }
     }
 }
