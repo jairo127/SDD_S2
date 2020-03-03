@@ -29,7 +29,7 @@ Pile_t * 	InitPile(int taille)
 /* Libére entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
-void 		LibererPile(Pile_t * pile)
+void 		LibererPile(Pile_t ** pile)
 {
 
 }

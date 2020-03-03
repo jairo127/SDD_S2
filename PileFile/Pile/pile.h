@@ -21,13 +21,13 @@ typedef int std_type_t;
 
 /************************************************/
 /* Structure de données : Pile_t 			 	*/
-/* - nbelem : Nombre d'éléments max de la pile	*/
+/* - capacite : Capacité max de la pile			*/
 /* - sommet : Sommet de la pile 				*/
 /* - base : Zone d'empilement de la structure 	*/
 /************************************************/
 typedef struct pile
 {
-	int 			nbelem;
+	int 			capacite;
 	int 			sommet;
 	std_type_t 	  *	base;
 } Pile_t;
@@ -50,7 +50,7 @@ Pile_t * 	InitPile(int);
 /* Libére entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
-void 		LibererPile(Pile_t *);
+void 		LibererPile(Pile_t **);
 
 /************************************************/
 /* Fonction : Vérification si la pile est vide 	*/
