@@ -10,23 +10,29 @@
 
 /************************************************/
 /* Fonction : Initialisation de la Pile 	 	*/
-/* Entrée : Taille souhaité					 	*/
-/* Sortie : Adresse de la pile créé 			*/
+/* Entrée : Taille souhaitée				 	*/
+/* Sortie : Adresse de la pile créée 			*/
 /*												*/
 /* Initialise une nouvelle pile de taille 		*/
 /* passée en paramétre 							*/
 /************************************************/
-Pile_t * 	InitPile(int);
+Pile_t * 	InitPile(int taille)
+{
+	return NULL;
+}
 
 /************************************************/
 /* Procédure : Libération de la Pile 		 	*/
 /* Entrée : Pile à libérer (par adresse)	 	*/
 /* Sortie : Aucune					 			*/
 /*												*/
-/* Libére entiérement l'espace mémoire lié 		*/
+/* Libére entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
-void 		LibererPile(Pile_t *);
+void 		LibererPile(Pile_t * pile)
+{
+
+}
 
 /************************************************/
 /* Fonction : Vérification si la pile est vide 	*/
@@ -36,29 +42,38 @@ void 		LibererPile(Pile_t *);
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(Pile_t);
+int 		EstVide(Pile_t pile)
+{
+	return -1;
+}
 
 /************************************************/
 /* Procédure : Empiler un élément dans la pile 	*/
 /* Entrée : - Pile concernée (par copie)		*/
 /* 			- Valeur/Variable à empiler 		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succés de l'empilement 		*/
+/* 			- 0 : Succès de l'empilement 		*/
 /*			- 1 : Ne peut pas empiler			*/
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t, std_type_t);
+int 		Empiler(Pile_t pile, std_type_t var)
+{
+	return -1;
+}
 
 /************************************************/
 /* Procédure : Dépiler un élément de la pile 	*/
 /* Entrée : - Pile concernée (par adresse)		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succés de l'empilement 		*/
+/* 			- 0 : Succès de l'empilement 		*/
 /*			- 2 : Ne peut pas dépiler			*/
 /*			Adresse de la valeur/variable 		*/
 /*			(NULL si impossibilité de dépiler)  */
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t, std_type_t *);
+int 		Depiler(Pile_t pile, std_type_t * var)
+{
+	return -1;
+}

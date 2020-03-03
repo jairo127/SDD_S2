@@ -2,16 +2,19 @@
 /* Fichier "pile.h"                     	*/
 /* Valentin Guien - William Garrier     	*/
 /*											*/
-/* Contient les déclaration des fonctions	*/
+/* Contient les déclarations des fonctions	*/
 /* et la structure de données de la pile    */
 /********************************************/
 
 #ifndef PILE
 #define PILE
 
+#include <stdio.h>
+#include <stdlib.h>
+
 /************************************************/
-/* Type standart utilisé pour adapté la pile 	*/
-/* à tous types de variables à stocker			*/
+/* Type standard utilisé pour adapter la pile 	*/
+/* à tout type de variable à stocker			*/
 /* Remplacer int par le type voulu				*/
 /************************************************/
 typedef int std_type_t;
@@ -31,8 +34,8 @@ typedef struct pile
 
 /************************************************/
 /* Fonction : Initialisation de la Pile 	 	*/
-/* Entrée : Taille souhaité					 	*/
-/* Sortie : Adresse de la pile créé 			*/
+/* Entrée : Taille souhaitée				 	*/
+/* Sortie : Adresse de la pile créée 			*/
 /*												*/
 /* Initialise une nouvelle pile de taille 		*/
 /* passée en paramétre 							*/
@@ -44,7 +47,7 @@ Pile_t * 	InitPile(int);
 /* Entrée : Pile à libérer (par adresse)	 	*/
 /* Sortie : Aucune					 			*/
 /*												*/
-/* Libére entiérement l'espace mémoire lié 		*/
+/* Libére entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
 void 		LibererPile(Pile_t *);
@@ -64,7 +67,7 @@ int 		EstVide(Pile_t);
 /* Entrée : - Pile concernée (par copie)		*/
 /* 			- Valeur/Variable à empiler 		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succés de l'empilement 		*/
+/* 			- 0 : Succès de l'empilement 		*/
 /*			- 1 : Ne peut pas empiler			*/
 /*												*/
 /* Empile une variable dans la pile 			*/
@@ -75,7 +78,7 @@ int 		Empiler(Pile_t, std_type_t);
 /* Procédure : Dépiler un élément de la pile 	*/
 /* Entrée : - Pile concernée (par adresse)		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succés de l'empilement 		*/
+/* 			- 0 : Succès de l'empilement 		*/
 /*			- 2 : Ne peut pas dépiler			*/
 /*			Adresse de la valeur/variable 		*/
 /*			(NULL si impossibilité de dépiler)  */
