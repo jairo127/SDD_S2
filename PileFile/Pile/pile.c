@@ -18,7 +18,25 @@
 /************************************************/
 Pile_t * 	InitPile(int taille)
 {
-	return NULL;
+	Pile_t * pile = (Pile_t *) malloc(sizeof(Pile_t));
+	
+	if (pile)
+	{
+		pile->base = (std_type_t *) malloc(sizeof(std_type_t) * taille);
+		
+		if (pile->base)
+		{
+			pile->capacite = taille;
+			pile->sommet = -1;
+		}
+		else
+		{
+			free(pile);
+			pile = NULL;
+		}
+	}
+
+	return pile;
 }
 
 /************************************************/
@@ -26,12 +44,14 @@ Pile_t * 	InitPile(int taille)
 /* Entrée : Pile à libérer (par adresse)	 	*/
 /* Sortie : Aucune					 			*/
 /*												*/
-/* Libére entièrement l'espace mémoire lié 		*/
+/* Libère entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
-void 		LibererPile(Pile_t * pile)
+void 		LibererPile(Pile_t * * pile)
 {
-
+	free((*pile)->base);
+	free(*pile);
+	*pile = NULL;
 }
 
 /************************************************/
@@ -44,7 +64,7 @@ void 		LibererPile(Pile_t * pile)
 /************************************************/
 int 		EstVide(Pile_t pile)
 {
-	return -1;
+	return (pile.sommet == -1);
 }
 
 /************************************************/
@@ -57,9 +77,17 @@ int 		EstVide(Pile_t pile)
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t pile, std_type_t var)
+int 		Empiler(Pile_t * pile, std_type_t var)
 {
-	return -1;
+	int code = 1;
+
+	if (pile->sommet < pile->capacite - 1)
+	{
+		pile->sommet = pile->sommet + 1;
+		pile->base [pile->sommet] = var;
+		code = 0;
+	}
+	return code;
 }
 
 /************************************************/
@@ -73,7 +101,29 @@ int 		Empiler(Pile_t pile, std_type_t var)
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t pile, std_type_t * var)
+int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 {
-	return -1;
+	int code = 2;
+
+	printf("ma pile : %p\n", pile);
+	printf("sommet : %d\n", pile->sommet);
+	if (!EstVide(*pile))
+	{
+		*adr_var = pile->base [pile->sommet];
+		pile->sommet = pile->sommet - 1;
+		code = 0;
+	}
+
+	return code;
+}
+
+void		AfficherPile(Pile_t pile)
+{
+	int i;
+
+	for(i=0 ; i<=pile.sommet ; i++)
+	{
+		printf("%d ", pile.base [i]);
+	}
+	printf("\n");
 }

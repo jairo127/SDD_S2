@@ -21,13 +21,13 @@ typedef int std_type_t;
 
 /************************************************/
 /* Structure de données : Pile_t 			 	*/
-/* - nbelem : Nombre d'éléments max de la pile	*/
+/* - capacite : Nombre d'éléments max de la pile	*/
 /* - sommet : Sommet de la pile 				*/
 /* - base : Zone d'empilement de la structure 	*/
 /************************************************/
 typedef struct pile
 {
-	int 			nbelem;
+	int 			capacite;
 	int 			sommet;
 	std_type_t 	  *	base;
 } Pile_t;
@@ -38,7 +38,7 @@ typedef struct pile
 /* Sortie : Adresse de la pile créée 			*/
 /*												*/
 /* Initialise une nouvelle pile de taille 		*/
-/* passée en paramétre 							*/
+/* passée en paramètre 							*/
 /************************************************/
 Pile_t * 	InitPile(int);
 
@@ -50,7 +50,7 @@ Pile_t * 	InitPile(int);
 /* Libére entièrement l'espace mémoire lié 		*/
 /* à la pile à libérer							*/
 /************************************************/
-void 		LibererPile(Pile_t *);
+void 		LibererPile(Pile_t * *);
 
 /************************************************/
 /* Fonction : Vérification si la pile est vide 	*/
@@ -72,7 +72,7 @@ int 		EstVide(Pile_t);
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t, std_type_t);
+int 		Empiler(Pile_t *, std_type_t);
 
 /************************************************/
 /* Procédure : Dépiler un élément de la pile 	*/
@@ -85,6 +85,8 @@ int 		Empiler(Pile_t, std_type_t);
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t, std_type_t *);
+int 		Depiler(Pile_t *, std_type_t *);
 
+
+void		AfficherPile(Pile_t);
 #endif
