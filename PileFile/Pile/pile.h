@@ -38,7 +38,7 @@ typedef struct pile
 /* Sortie : Adresse de la pile créée 			*/
 /*												*/
 /* Initialise une nouvelle pile de taille 		*/
-/* passée en paramétre 							*/
+/* passée en paramètre 							*/
 /************************************************/
 Pile_t * 	InitPile(int);
 
@@ -72,7 +72,7 @@ int 		EstVide(Pile_t);
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t, std_type_t);
+int 		Empiler(Pile_t *, std_type_t);
 
 /************************************************/
 /* Procédure : Dépiler un élément de la pile 	*/
@@ -85,6 +85,8 @@ int 		Empiler(Pile_t, std_type_t);
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t, std_type_t *);
+int 		Depiler(Pile_t *, std_type_t *);
 
+
+void		AfficherPile(Pile_t);
 #endif
