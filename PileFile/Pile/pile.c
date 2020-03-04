@@ -105,8 +105,6 @@ int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 {
 	int code = 2;
 
-	printf("ma pile : %p\n", pile);
-	printf("sommet : %d\n", pile->sommet);
 	if (!EstVide(*pile))
 	{
 		*adr_var = pile->base [pile->sommet];
@@ -117,6 +115,15 @@ int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 	return code;
 }
 
+/************************************************/
+/* Procédure DEBUG : Afficher la pile 			*/
+/* Entrée : - Pile à afficher (par copie)		*/
+/* Sortie : Aucune 								*/
+/*												*/
+/* Affiche les éléments présents dans la pile 	*/
+/* de bas en haut (utilisé seulement pour du 	*/
+/* débug)										*/
+/************************************************/
 void		AfficherPile(Pile_t pile)
 {
 	int i;

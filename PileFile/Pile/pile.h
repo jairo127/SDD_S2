@@ -87,6 +87,15 @@ int 		Empiler(Pile_t *, std_type_t);
 /************************************************/
 int 		Depiler(Pile_t *, std_type_t *);
 
-
+/************************************************/
+/* Procédure DEBUG : Afficher la pile 			*/
+/* Entrée : - Pile à afficher (par copie)		*/
+/* Sortie : Aucune 								*/
+/*												*/
+/* Affiche les éléments présents dans la pile 	*/
+/* de bas en haut (utilisé seulement pour du 	*/
+/* débug)										*/
+/************************************************/
 void		AfficherPile(Pile_t);
+
 #endif

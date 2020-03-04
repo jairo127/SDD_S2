@@ -26,7 +26,6 @@ static void test_init_pile(void ** frame)
 	assert_non_null(pile->base);
 }
 
-
 /********************************************/
 /* Test de la libération d'une pile      	*/
 /********************************************/
@@ -58,7 +57,7 @@ static void test_empilement_pile(void ** frame)
 
 	if (pile != NULL)
 	{
-		code = Empiler(*pile, 5);
+		code = Empiler(pile, 5);
 		assert_int_equal(code, 0);
 		assert_int_equal(pile->sommet, 0);
 		assert_int_equal((pile->base)[pile->sommet], 5);
@@ -81,12 +80,12 @@ static void test_depilement_pile(void ** frame)
 
 	if (pile != NULL)
 	{
-		code = Empiler(*pile, 5);
+		code = Empiler(pile, 5);
 		assert_int_equal(code, 0);
 		assert_int_equal(pile->sommet, 0);
 		assert_int_equal((pile->base)[pile->sommet], 5);
 
-		code = Depiler(*pile, &var);
+		code = Depiler(pile, &var);
 		assert_int_equal(code, 0);
 		assert_int_equal(pile->sommet, -1);
 		assert_int_equal(var, 5);
@@ -111,7 +110,7 @@ static void test_vide_pile(void ** frame)
 	{
 		assert_true(EstVide(*pile));
 
-		code = Empiler(*pile, 5);
+		code = Empiler(pile, 5);
 		assert_int_equal(code, 0);
 		assert_int_equal(pile->sommet, 0);
 		assert_int_equal((pile->base)[pile->sommet], 5);
