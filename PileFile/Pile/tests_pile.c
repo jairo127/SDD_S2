@@ -24,6 +24,9 @@ static void test_init_pile(void ** frame)
 	assert_int_equal(pile->capacite, 20);
 	assert_int_equal(pile->sommet, -1);
 	assert_non_null(pile->base);
+
+	free(pile->base);
+	free(pile);
 }
 
 /********************************************/
@@ -62,6 +65,9 @@ static void test_empilement_pile(void ** frame)
 		assert_int_equal(pile->sommet, 0);
 		assert_int_equal((pile->base)[pile->sommet], 5);
 	}
+
+	free(pile->base);
+	free(pile);
 }
 
 /********************************************/
@@ -90,6 +96,9 @@ static void test_depilement_pile(void ** frame)
 		assert_int_equal(pile->sommet, -1);
 		assert_int_equal(var, 5);
 	}
+
+	free(pile->base);
+	free(pile);
 }
 
 /********************************************/
@@ -117,6 +126,9 @@ static void test_vide_pile(void ** frame)
 
 		assert_false(EstVide(*pile));
 	}
+
+	free(pile->base);
+	free(pile);
 }
 
 int main(void)

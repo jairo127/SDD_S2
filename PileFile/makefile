@@ -3,8 +3,7 @@ EXEC = tests
 
 all: $(EXEC)
 
-tests: $(OBJ)
-	gcc -o $(EXEC) $(OBJ)
+tests: tests_pile tests_file
 
 tests_pile : Pile/pile.c Pile/pile.h Pile/tests_pile.c
 	gcc Pile/*.c -o Pile/tests $(CFLAGS)
@@ -12,5 +11,5 @@ tests_pile : Pile/pile.c Pile/pile.h Pile/tests_pile.c
 tests_file : File/file.c File/file.h File/tests_file.c
 	gcc File/*.c -o File/tests $(CFLAGS)
 
-mrproper: clean
-	rm -f */$(EXEC)
+mrproper:
+	rm */$(EXEC)
