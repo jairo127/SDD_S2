@@ -40,7 +40,7 @@ typedef struct file
 /* Sortie : Adresse de la file créée 			*/
 /*												*/
 /* Initialise une nouvelle file de taille 		*/
-/* passée en paramétre 							*/
+/* passée en paramètre 							*/
 /************************************************/
 File_t * 	InitFile(int);
 

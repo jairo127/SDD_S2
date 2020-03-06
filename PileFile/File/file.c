@@ -14,11 +14,28 @@
 /* Sortie : Adresse de la file créée 			*/
 /*												*/
 /* Initialise une nouvelle file de taille 		*/
-/* passée en paramétre 							*/
+/* passée en paramètre 							*/
 /************************************************/
 File_t * 	InitFile(int taille)
 {
-	return NULL;
+	File_t * file = (File_t *) malloc(sizeof(File_t));
+	if (file)
+	{
+		file->base = (std_type_t *) malloc(sizeof(std_type_t) * taille);
+		if (file->base)
+		{
+			file->capacite = taille;
+			file->debut = -1;
+			file->fin = -1;
+		}
+		else
+		{
+			free(file);
+			file = NULL;
+		}
+	}
+
+	return file;
 }
 
 /************************************************/
