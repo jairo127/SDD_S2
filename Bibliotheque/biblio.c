@@ -6,7 +6,7 @@ FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
     FILE * fichier = fopen(nom_fichier,mode);
     if (!fichier)
     {
-        *code = 0;
+        *code = 1;
     }
     return fichier;
 }

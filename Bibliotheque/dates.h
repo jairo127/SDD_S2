@@ -16,6 +16,6 @@ void              AfficherDates    (liste_emprunt_t);
 liste_emprunt_t * RechercheEmprunt (liste_emprunt_t *, long);
 liste_livres_t  * RechercheLivre   (liste_categories_t, char[4], int);
 void              InsererEmprunt   (liste_categories_t, liste_emprunt_t *, char[4], int, long, int *);
-void              SupprimerEmprunt (liste_categories_t, liste_emprunt_t *, char[4], int, long);
+void              SupprimerEmprunt (liste_categories_t, liste_emprunt_t *, char[4], int, long, int *);
 
 #endif
