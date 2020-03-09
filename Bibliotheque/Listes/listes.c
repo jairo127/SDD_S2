@@ -115,7 +115,7 @@ void InsererEnTete(liste_categories_t * biblio, char * nom, liste_livres_t liste
 /*                                due à une allocation ratée      */
 /*                                                                */
 /* La procédure met en place la liste des catégories à partir du  */
-/* fichier fourni, contenant les divers livres et leurs attributs */                                                             */
+/* fichier fourni, contenant les divers livres et leurs attributs */ 
 /******************************************************************/
 
 void RemplirListe(FILE * fichier, liste_categories_t * biblio, int * code)

@@ -111,7 +111,7 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier
     {
 	fgets(ligne, TAILLE_MAX, rendus); //Duplication de code nécessaire pour faire fonctionner feof
 
-        while (!feof(rendus) && code != 3)
+        while (!feof(rendus))
         {
             code = 0;
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
@@ -127,7 +127,7 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier
 		        printf("Erreur : Le livre n°%d n'est pas emprunté ou tentative de rendus multiples\n", numero); 
    	            break;
 	        case 3:
-   	            printf("Erreur : Espace mémoire insuffisant\n"); 
+   	            printf("Erreur : Date de retour incorrecte pour le livre n°%d\n", numero); 
 	            break;
 	        }
 	        fgets(ligne, TAILLE_MAX, rendus);

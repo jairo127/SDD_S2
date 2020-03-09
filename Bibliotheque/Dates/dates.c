@@ -147,7 +147,8 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
 /*              date de retour du livre emprunté                */
 /* Sortie    : Adresse de la liste des emprunts,                */
 /*             Code de retour : 0 si ok, 1 si livre introuvable,*/
-/*             2 si livre non emprunté, 3 si problème mémoire   */
+/*             2 si livre non emprunté, 3 si date de rendu      */
+/*             incorrecte                                       */
 /*                                                              */
 /* Procédure qui supprime une cellule emprunt                   */
 /****************************************************************/

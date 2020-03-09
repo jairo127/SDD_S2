@@ -60,7 +60,7 @@ void             InsererEnTete      (liste_categories_t *, char * , liste_livres
 /*                                due à une allocation ratée      */
 /*                                                                */
 /* La procédure met en place la liste des catégories à partir du  */
-/* fichier fourni, contenant les divers livres et leurs attributs */                                                             */
+/* fichier fourni, contenant les divers livres et leurs attributs */
 /******************************************************************/
 void             RemplirListe       (FILE *, liste_categories_t *, int *);
 
