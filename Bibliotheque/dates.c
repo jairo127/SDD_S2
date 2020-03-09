@@ -175,4 +175,3 @@ void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char n
         *code = 1;	
     }
 }
-// si (*adr)->disponible = 0, afficher message d'erreur, ou bien si on veut rendre un livre qui n'existe pas

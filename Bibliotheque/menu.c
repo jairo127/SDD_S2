@@ -2,7 +2,7 @@
 
 void AfficherMenu()
 {
-    printf("Gestionnaire de bibliotheque\n1) Consulter la bibliotheque\n2) Consulter la liste des emprunts\n3) Emprunter les livres\n4) Rendre les livres\n5) Quitter\n\nEntrer un entier correspondant au choix : ");
+    printf("Gestionnaire de bibliotheque\n1) Consulter la bibliotheque\n2) Consulter la liste des emprunts\n3) Emprunter les livres\n4) Rendre les livres\n5) Imprimer les livres à rendre avant une certaine date\n6) Quitter\n\nEntrer un entier correspondant au choix : ");
 }
 
 int GestionChoix()
@@ -97,5 +97,32 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, int * code)
 	}
 	
 	fclose(rendus);
+    }
+}
+
+long RecupAnnee(long date)
+{
+    return date / 10000;
+}
+
+long RecupMois(long date)
+{
+    return date / 100 - RecupAnnee(date) * 100;
+}
+
+long RecupJour(long date)
+{
+    return date - (date / 100) * 100;
+}
+
+
+void Imprimer(liste_emprunt_t dates, long date)
+{
+    liste_emprunt_t cour = dates;
+    printf("Liste des livres à rendre avant le %ld %ld %ld :\n", RecupJour(date), RecupMois(date), RecupAnnee(date));
+    while (cour && cour->date_retour <= date)
+    {
+        printf("Livre n°%d : à rendre avant le %ld %ld %ld\n",cour->numero, RecupJour(cour->date_retour), RecupMois(cour->date_retour), RecupAnnee(cour->date_retour));
+        cour = cour->suiv;
     }
 }

@@ -13,6 +13,7 @@ int main(int argc, char * * argv)
     {
         int code = 0;
         int choix = 0;
+        long choix_date;
         char tmp;
 
         liste_categories_t biblio = NULL;
@@ -38,6 +39,11 @@ int main(int argc, char * * argv)
                     case 4:
                         Rendre(biblio, &dates, &code); break;
                     case 5:
+                        printf("Entrer une date limite sous le format aaaammjj : ");
+                        scanf("%ld", &choix_date);
+                        Imprimer(dates, choix_date);
+                        break;
+                    case 6:
                         break;
                     default:
                         printf("Erreur dans le choix\n"); break;
@@ -45,7 +51,7 @@ int main(int argc, char * * argv)
                 printf("Appuyez sur une entrée pour continuer\n");
                 scanf("%c%*c", &tmp);
                 system("clear");
-            } while (choix != 5 && !code);
+            } while (choix != 6 && !code);
         }
         else
         {
