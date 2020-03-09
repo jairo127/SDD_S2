@@ -27,20 +27,36 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, int * code)
     }
     else
     {
-        while (!feof(emprunts) && code)
+	fgets(ligne, TAILLE_MAX, emprunts);   //Duplication de code nécessaire pour faire fonctionner feof 
+        while (!feof(emprunts) && !(*code))
         {
-            fgets(ligne, TAILLE_MAX, emprunts);
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-            InsererEmprunt(biblio, dates, nom, numero, date_retour, code);
+       	    InsererEmprunt(biblio, dates, nom, numero, date_retour, code);
+ 	  
+	    fgets(ligne, TAILLE_MAX, emprunts);	   
         }
-        if (!code)
-        {
-            printf("Erreur de lecture du fichier Emprunt\n");
-        }
+        
+	switch(*code)
+    	{
+	    case 0:
+		printf("Fait\n");
+	        break;	
+	    case 1:
+                printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\nArret du programme\n", numero, nom);
+	        break;
+	    case 2: 
+		printf("Erreur : Le livre n°%d est déjà emprunté ou tentative d'emprunts multiples\nArret du programme\n", numero); 
+   	        break;
+	    case 3:
+   	        printf("Erreur : Espace mémoire insuffisant\nArret du programme\n"); 
+	        break;
+	}
+       
+	fclose(emprunts);
     }
 }
 
-void Rendre(liste_categories_t biblio, liste_emprunt_t * dates)
+void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, int * code)
 {
     char ligne[TAILLE_MAX];
     char nom[4];
@@ -54,11 +70,32 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates)
     }
     else
     {
-        while (!feof(rendus))
+	fgets(ligne, TAILLE_MAX, rendus); //Duplication de code nécessaire pour faire fonctionner feof
+
+        while (!feof(rendus) && !(*code))
         {
-            fgets(ligne, TAILLE_MAX, rendus);
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-            SupprimerEmprunt(biblio, dates, nom, numero, date_retour);
-        }
+            SupprimerEmprunt(biblio, dates, nom, numero, date_retour, code);
+            
+	    fgets(ligne, TAILLE_MAX, rendus);
+	}
+	
+	switch(*code)
+	{
+	    case 0:
+		printf("Fait\n");
+		break;
+            case 1:
+  	        printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\nArret du programme\n", numero, nom);
+                break;
+	    case 2:
+	 	printf("Erreur : Le livre n°%d n'a pas été emprunté ou tentative de rendus multiples\nArret du programme\n", numero);
+		break;
+	    case 3:
+		printf("Erreur : La date de retour du livre n°%d est incorrecte\nArret du programme\n", numero);
+		break;
+	}
+	
+	fclose(rendus);
     }
 }

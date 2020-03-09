@@ -13,7 +13,7 @@ void AfficherBiblio(liste_categories_t biblio)
 
         	while (cour_l)
         	{
-            		printf("Numero du livre : %d, titre du livre : %s, disponibilite : %s\n", 
+            		printf("Numero du livre : %d, titre du livre : %s, disponible : %s\n", 
             		cour_l->numero, cour_l->titre, (cour_l->disponible)?"OUI":"NON");
             		cour_l = cour_l->suiv;
         	}

@@ -3,7 +3,6 @@
 void AfficherDates (liste_emprunt_t dates)
 {
     emprunt_t * cour = dates;
-    printf("cour = %p\n", cour);
     if (cour) 
     {
     	do
@@ -50,55 +49,87 @@ liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int nume
     return prec;
 }
 
+// 0 : ok
+// 1 : Livre introuvable
+// 2 : Livre déjà emprunté
+// 3 : plus de place dans la memoire
 void InsererEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
     liste_livres_t * adr = RechercheLivre(liste, nom, numero);
-    if (*adr && (*adr)->numero == numero && (*adr)->disponible == 1) 
+    
+    if (*adr && (*adr)->numero == numero)
     {
-        (*adr) -> disponible = 0;
-
-        liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour);
-
-        emprunt_t * maillon = (emprunt_t *) malloc(sizeof(emprunt_t));
-        if (maillon)
+        if ((*adr)->disponible == 1) 
         {
-            maillon->numero = numero;
-            maillon->date_retour = date_retour;
-            maillon->suiv = *ptr;
-            *ptr = maillon;
+            emprunt_t * maillon = (emprunt_t *) malloc(sizeof(emprunt_t));
+            if (maillon)
+            {
+                liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour);
+
+		maillon->numero = numero;
+                maillon->date_retour = date_retour;
+                maillon->suiv = *ptr;
+                *ptr = maillon;
+
+		(*adr)->disponible = 0;
+            }
+            else
+            {
+                free(maillon);
+                *code = 3;
+            }
+
         }
         else
         {
-            free(maillon);
-            *code = 0;
+            *code = 2;
         }
-
     }
     else
     {
-        *code = 0;
+	*code = 1;
     }
 }
-// deux codes differents : un pour si un livre est deja emprunte, un si un livre n'existe pas
 
 
-void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour)
+// 0 : ok
+// 1 : livre introuvable
+// 2 : livre pas emprunté
+// 3 : date retour incorrect
+void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
-    liste_emprunt_t * cour = dates;
     emprunt_t * tmp;
-    while( *cour != NULL && ((*cour)->numero != numero || (*cour)->date_retour != date_retour))
-    {
-        cour = &((*cour)-> suiv);
-    }
-    
-    if (*cour)
-    {
-        tmp = *cour;
-        *cour = (*cour) -> suiv;
-        free(tmp);
 
-        liste_livres_t * adr = RechercheLivre(liste, nom, numero);
-        (*adr) -> disponible = 1;
+    liste_livres_t * adr = RechercheLivre(liste, nom, numero);
+
+    if (*adr && (*adr) -> numero == numero)
+    {
+	if ((*adr) -> disponible == 0)
+	{
+	
+	    liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour);
+   
+    	    if (*ptr && (*ptr)->date_retour == date_retour)
+    	    {
+        	tmp = *ptr;
+        	*ptr = (*ptr) -> suiv;
+        	free(tmp);
+
+        	(*adr) -> disponible = 1;
+    	    }
+	    else
+	    {
+		*code = 3;
+	    }
+	}
+	else
+	{
+	    *code = 2;
+	}
+    }
+    else
+    {
+        *code = 1;	
     }
 }
 // si (*adr)->disponible = 0, afficher message d'erreur, ou bien si on veut rendre un livre qui n'existe pas

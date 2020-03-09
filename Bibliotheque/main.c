@@ -11,7 +11,7 @@ int main(int argc, char * * argv)
     }
     else
     {
-        int code = 1;
+        int code = 0;
         int choix = 0;
         char tmp;
 
@@ -19,7 +19,7 @@ int main(int argc, char * * argv)
         liste_emprunt_t dates = NULL;
 
         FILE * fichier = OuvrirFichier(argv[1], &code, "r");
-        if (code)
+        if (!code)
         {
             RemplirListe(fichier, &biblio);
             do
@@ -36,7 +36,7 @@ int main(int argc, char * * argv)
                     case 3:
                         Emprunter(biblio, &dates, &code); break;
                     case 4:
-                        Rendre(biblio, &dates); break;
+                        Rendre(biblio, &dates, &code); break;
                     case 5:
                         break;
                     default:
@@ -45,7 +45,7 @@ int main(int argc, char * * argv)
                 printf("Appuyez sur une entrée pour continuer\n");
                 scanf("%c%*c", &tmp);
                 system("clear");
-            } while (choix != 5);
+            } while (choix != 5 && !code);
         }
         else
         {
