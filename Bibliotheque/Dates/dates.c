@@ -36,8 +36,8 @@ void AfficherDates (liste_emprunt_t dates)
 
 /****************************************************************/
 /* Fonction : Recherche d'emprunts                              */
-/* Entrées : Liste d'emprunts (A), Date de recherche            */
-/* Sortie : Liste d'emprunts (B) (A inclus dans B)              */
+/* Entrées : Adresse de liste d'emprunts, Date de recherche     */
+/* Sortie : Adresse d'une cellule d'emprunts                    */
 /*                                                              */
 /* Fonction de recherche du premier emprunt à rendre après      */
 /* la date passée en paramètre de la fonction                   */
@@ -56,13 +56,14 @@ liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 
 /****************************************************************/
 /* Fonction : Recherche de livre                                */
-/* Entrées : Liste de catégorie, Nom de la catégorie,           */
+/* Entrées : Liste de catégories, Nom de la catégorie,          */
 /*           Numéro du livre                                    */
-/* Sortie : Pointeur sur le livre exact ou le précédent         */
+/* Sortie : Pointeur sur le livre exact (ou le précédent)       */
 /*                                                              */
 /* Fonction de recherche de livre. La catégorie et le numéro    */
-/* du livre est passé en paramétre. La fonction retourne un     */
+/* du livre sont passés en paramètres. La fonction retourne un  */
 /* pointeur sur le livre trouvé ou le précédent du numéro       */
+/* jamais le livre recherché n'existe pas                       */
 /****************************************************************/
 liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int numero)
 {
@@ -90,11 +91,13 @@ liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int nume
 /*           Nom de la catégorie                                */
 /*           Numéro du livre                                    */
 /*           Date de retour du livre                            */
-/* Sortie : Code de retour                                      */
+/* Sortie : Adresse de la liste d'emprunts,                     */
+/*            Code de retour                                    */
 /*          (0 Ok, 1 Livre introuvable, 2 Livre déjà emprunté,  */
 /*          3 Plus de place dans la mémoire)                    */
 /*                                                              */
-/* Fonction d'insertion d'emprunt                               */
+/* Fonction d'insertion d'emprunt, en respectant le tri de la   */
+/*   liste selon la date de retour                              */
 /****************************************************************/
 void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
@@ -135,11 +138,20 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
     }
 }
 
+/****************************************************************/
+/* Procédure : Suppression d'un emprunt                         */
+/* Entrées    : Liste des catégories, Adresse                   */
+/*              de la liste des emprunts,                       */
+/*              Nom de la catégorie du livre emprunté,          */
+/*              numéro du livre emprunté,                       */
+/*              date de retour du livre emprunté                */
+/* Sortie    : Adresse de la liste des emprunts,                */
+/*             Code de retour : 0 si ok, 1 si livre introuvable,*/
+/*             2 si livre non emprunté, 3 si problème mémoire   */
+/*                                                              */
+/* Procédure qui supprime une cellule emprunt                   */
+/****************************************************************/
 
-// 0 : ok
-// 1 : livre introuvable
-// 2 : livre pas emprunté
-// 3 : date retour incorrect
 void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
     emprunt_t * tmp;
@@ -176,6 +188,15 @@ void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char n
         *code = 1;	
     }
 }
+
+/****************************************************************/
+/* Procédure : Libération de la liste des emprunts              */
+/* Entrée    : Liste des emprunts                               */
+/* Sortie    : Aucune                                           */
+/*                                                              */
+/* La procédure rend la mémoire utilisée pour stocker la        */
+/* liste des emprunts                                           */
+/****************************************************************/
 
 void LibererEmprunts(liste_emprunt_t dates)
 {
