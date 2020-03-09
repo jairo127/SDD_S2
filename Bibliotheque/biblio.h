@@ -20,10 +20,10 @@
 #define TAILLE_MAX 100
 
 /****************************************************************/
-/* Structure de données : Liste chaîné de livres 				*/
+/* Structure de données : Liste chaînée de livres 				*/
 /* - numero : Numéro du livre 									*/
-/* - titre : Titre du livre sur 10 caractéres 					*/
-/* - disponible : 1 si le livre est disponible pour emprunt 	*/
+/* - titre : Titre du livre sur 10 caractères 					*/
+/* - disponible : 1 si le livre est disponible pour l'emprunt 	*/
 /*   			  0 sinon 										*/
 /* - suiv : Pointeur vers le prochain maillon 					*/
 /* 			(NULL s'il n'existe pas) 							*/
@@ -41,8 +41,8 @@ typedef struct liste_livres
 } livres_t, *liste_livres_t ;
 
 /****************************************************************/
-/* Structure de données : Liste chaîné de catégories 			*/
-/* - nom : Nom de la catégorie sur 3 caractéres 				*/
+/* Structure de données : Liste chaînée de catégories 			*/
+/* - nom : Nom de la catégorie sur 3 caractères 				*/
 /* - liste_livres_categories : Liste de livres de la catégorie 	*/
 /* - suiv : Pointeur vers le prochain maillon 					*/
 /*			(NULL s'il n'existe pas)  							*/

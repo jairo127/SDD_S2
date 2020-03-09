@@ -15,6 +15,7 @@
 
 /****************************************************************/
 /* Structure de données : Liste chaînée d'emprunts 				*/
+/* - nom : Nom de la catégorie sur 3 caractères 				*/
 /* - numero : Nom du livre emprunté 							*/
 /* - date_retour : Date de retour au plus tard du livre 	 	*/
 /* 				   Format : AAAAMMJJ 							*/
@@ -27,6 +28,7 @@
 /****************************************************************/
 typedef struct liste_emprunt 
 {
+    char                      nom[4];
     int                       numero;
     long                      date_retour;
     struct liste_emprunt *    suiv;

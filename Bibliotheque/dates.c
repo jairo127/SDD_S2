@@ -23,8 +23,8 @@ void AfficherDates (liste_emprunt_t dates)
     {
     	do
     	{
-        	printf("Numero de livre : %d , date de retour : %ld\n",
-        	        cour->numero, cour->date_retour);
+        	printf("Catégorie : %s, Numero de livre : %d, date de retour : %ld\n",
+        	        cour->nom, cour->numero, cour->date_retour);
         	cour = cour->suiv;
     	} while (cour);
     }
@@ -39,8 +39,8 @@ void AfficherDates (liste_emprunt_t dates)
 /* Entrées : Liste d'emprunts (A), Date de recherche            */
 /* Sortie : Liste d'emprunts (B) (A inclus dans B)              */
 /*                                                              */
-/* Fonction de recherche des emprunts à rendre après la date    */
-/* passée en paramétre de la fonction                           */
+/* Fonction de recherche du premier emprunt à rendre après      */
+/* la date passée en paramètre de la fonction                   */
 /****************************************************************/
 liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 {
@@ -109,7 +109,8 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
             {
                 liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour);
 
-		maillon->numero = numero;
+                strcpy(maillon->nom, nom);
+		        maillon->numero = numero;
                 maillon->date_retour = date_retour;
                 maillon->suiv = *ptr;
                 *ptr = maillon;

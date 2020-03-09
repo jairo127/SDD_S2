@@ -13,10 +13,10 @@
 /* Fonction : Ouverture de fichier                              */
 /* Entrées : Nom du fichier, mode d'ouverture                   */
 /* Sortie : Adresse du fichier ouvert (NULL si échec)           */
-/*          Code de retour -> 0 si échec de l'ouverture         */
+/*          Code de retour -> 1 si échec de l'ouverture         */
 /*                                                              */
 /* Fonction chargée d'ouvrir un fichier dont le nom et le mode  */
-/* d'ouverture est donné en paramétre et retourne l'adresse     */
+/* d'ouverture est donné en paramètre et retourne l'adresse     */
 /* mémoire du fichier ouvert.                                   */
 /****************************************************************/
 FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
