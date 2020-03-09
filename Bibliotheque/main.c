@@ -1,7 +1,7 @@
-#include "biblio.h"
-#include "listes.h"
-#include "dates.h"
-#include "menu.h"
+#include "Biblio/biblio.h"
+#include "Listes/listes.h"
+#include "Dates/dates.h"
+#include "Menu/menu.h"
 
 int main(int argc, char * * argv)
 {

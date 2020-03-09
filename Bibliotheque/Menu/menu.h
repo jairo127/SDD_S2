@@ -1,9 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "biblio.h"
-#include "listes.h"
-#include "dates.h"
+#include "../Biblio/biblio.h"
+#include "../Listes/listes.h"
+#include "../Dates/dates.h"
 
 void    AfficherMenu();
 int     GestionChoix();

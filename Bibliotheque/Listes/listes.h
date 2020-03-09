@@ -1,7 +1,7 @@
 #ifndef LISTES_H
 #define LISTES_H
 
-#include "biblio.h"
+#include "../Biblio/biblio.h"
 
 
 /* Gestion d'une liste chainee a tete reelle */

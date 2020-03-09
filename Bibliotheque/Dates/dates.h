@@ -11,7 +11,7 @@
 #ifndef DATES_H
 #define DATES_H
 
-#include "biblio.h"
+#include "../Biblio/biblio.h"
 
 /****************************************************************/
 /* Structure de données : Liste chaînée d'emprunts 				*/
