@@ -7,8 +7,8 @@
 
 void    AfficherMenu();
 int     GestionChoix();
-void    Emprunter(liste_categories_t, liste_emprunt_t *, char [20], int *);
-void    Rendre(liste_categories_t, liste_emprunt_t *, char [20], int *);
+void    Emprunter(liste_categories_t, liste_emprunt_t *, char [20]);
+void    Rendre(liste_categories_t, liste_emprunt_t *, char [20]);
 long    RecupAnnee(long);
 long    RecupMois(long);
 long    RecupJour(long);

@@ -13,13 +13,14 @@ int GestionChoix()
     return choix;
 }
 
-void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30], int * code)
+void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
 {
     char ligne[TAILLE_MAX];
     char nom[4];
     int numero;
     long date_retour;
     FILE * emprunts = fopen(nom_fichier, "r");
+    int code = 0;
 
     if (!emprunts)
     {
@@ -28,41 +29,40 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fich
     else
     {
 	fgets(ligne, TAILLE_MAX, emprunts);   //Duplication de code nécessaire pour faire fonctionner feof 
-        while (!feof(emprunts) && !(*code))
+        while (!feof(emprunts) && code != 3)
         {
+            code = 0;
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-       	    InsererEmprunt(biblio, dates, nom, numero, date_retour, code);
- 	  
+       	    InsererEmprunt(biblio, dates, nom, numero, date_retour, &code);
+            switch(code)
+    	    {
+	        case 0:
+	            break;	
+	        case 1:
+                printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\n", numero, nom);
+	            break;
+	        case 2: 
+		        printf("Erreur : Le livre n°%d est déjà emprunté ou tentative d'emprunts multiples\n", numero); 
+   	            break;
+	        case 3:
+   	            printf("Erreur : Espace mémoire insuffisant\n"); 
+	            break;
+	        }
 	    fgets(ligne, TAILLE_MAX, emprunts);	   
         }
-        
-	switch(*code)
-    	{
-	    case 0:
-		    printf("Fait\n");
-	        break;	
-	    case 1:
-            printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\nArret du programme\n", numero, nom);
-	        break;
-	    case 2: 
-		    printf("Erreur : Le livre n°%d est déjà emprunté ou tentative d'emprunts multiples\nArret du programme\n", numero); 
-   	        break;
-	    case 3:
-   	        printf("Erreur : Espace mémoire insuffisant\nArret du programme\n"); 
-	        break;
-	}
-       
 	fclose(emprunts);
     }
+    printf("Terminé\n");
 }
 
-void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30], int * code)
+void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
 {
     char ligne[TAILLE_MAX];
     char nom[4];
     int numero;
     long date_retour;
     FILE * rendus = fopen(nom_fichier, "r");
+    int code;
 
     if (!rendus)
     {
@@ -72,32 +72,30 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier
     {
 	fgets(ligne, TAILLE_MAX, rendus); //Duplication de code nécessaire pour faire fonctionner feof
 
-        while (!feof(rendus) && !(*code))
+        while (!feof(rendus) && code != 3)
         {
+            code = 0;
             sscanf(ligne, "%s %d %ld", nom, &numero, &date_retour);
-            SupprimerEmprunt(biblio, dates, nom, numero, date_retour, code);
-            
-	    fgets(ligne, TAILLE_MAX, rendus);
-	}
-	
-	switch(*code)
-	{
-	    case 0:
-		    printf("Fait\n");
-		    break;
-        case 1:
-  	        printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\nArret du programme\n", numero, nom);
-            break;
-	    case 2:
-	 	    printf("Erreur : Le livre n°%d n'a pas été emprunté ou tentative de rendus multiples\nArret du programme\n", numero);
-		    break;
-	    case 3:
-		    printf("Erreur : La date de retour du livre n°%d est incorrecte\nArret du programme\n", numero);
-		break;
-	}
-	
+            SupprimerEmprunt(biblio, dates, nom, numero, date_retour, &code);
+            switch(code)
+    	    {
+	        case 0:
+	            break;	
+	        case 1:
+                printf("Erreur : Le livre n°%d n'existe pas ou n'est pas dans la catégorie %s\n", numero, nom);
+	            break;
+	        case 2: 
+		        printf("Erreur : Le livre n°%d n'est pas emprunté ou tentative de rendus multiples\n", numero); 
+   	            break;
+	        case 3:
+   	            printf("Erreur : Espace mémoire insuffisant\n"); 
+	            break;
+	        }
+	        fgets(ligne, TAILLE_MAX, rendus);
+        }
 	fclose(rendus);
     }
+    printf("Terminé\n");
 }
 
 long RecupAnnee(long date)

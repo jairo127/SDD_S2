@@ -115,7 +115,7 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
                 maillon->suiv = *ptr;
                 *ptr = maillon;
 
-		(*adr)->disponible = 0;
+		        (*adr)->disponible = 0;
             }
             else
             {
@@ -174,5 +174,17 @@ void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char n
     else
     {
         *code = 1;	
+    }
+}
+
+void LibererEmprunts(liste_emprunt_t dates)
+{
+    liste_emprunt_t cour = dates;
+    liste_emprunt_t tmp;
+    while (cour)
+    {
+        tmp = cour;
+        cour = cour->suiv;
+        free(tmp);
     }
 }
