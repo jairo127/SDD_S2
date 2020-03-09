@@ -1,5 +1,21 @@
+/****************************************************************/
+/* Fichier : dates.c                                            */
+/*                                                              */
+/* Auteurs : Valentin Guien - William Garrier                   */
+/*                                                              */
+/* Fichier contenant les implémentation des fonctions de        */
+/* gestion des emprunts déclarées dans dates.h                  */
+/****************************************************************/
+
 #include "dates.h"
 
+/****************************************************************/
+/* Procédure : Afficher les emprunts                            */
+/* Entrées : Liste d'emprunts                                   */
+/* Sortie : Aucune                                              */
+/*                                                              */
+/* Fonction chargée d'afficher la liste des emprunts            */
+/****************************************************************/
 void AfficherDates (liste_emprunt_t dates)
 {
     emprunt_t * cour = dates;
@@ -18,6 +34,14 @@ void AfficherDates (liste_emprunt_t dates)
     }
 }
 
+/****************************************************************/
+/* Fonction : Recherche d'emprunts                              */
+/* Entrées : Liste d'emprunts (A), Date de recherche            */
+/* Sortie : Liste d'emprunts (B) (A inclus dans B)              */
+/*                                                              */
+/* Fonction de recherche des emprunts à rendre après la date    */
+/* passée en paramétre de la fonction                           */
+/****************************************************************/
 liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 {
     liste_emprunt_t * prec;
@@ -30,6 +54,16 @@ liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 
 }
 
+/****************************************************************/
+/* Fonction : Recherche de livre                                */
+/* Entrées : Liste de catégorie, Nom de la catégorie,           */
+/*           Numéro du livre                                    */
+/* Sortie : Pointeur sur le livre exact ou le précédent         */
+/*                                                              */
+/* Fonction de recherche de livre. La catégorie et le numéro    */
+/* du livre est passé en paramétre. La fonction retourne un     */
+/* pointeur sur le livre trouvé ou le précédent du numéro       */
+/****************************************************************/
 liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int numero)
 {
     liste_categories_t cour = biblio;
@@ -49,11 +83,20 @@ liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int nume
     return prec;
 }
 
-// 0 : ok
-// 1 : Livre introuvable
-// 2 : Livre déjà emprunté
-// 3 : plus de place dans la memoire
-void InsererEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
+/****************************************************************/
+/* Fonction : Insertion d'emprunt                               */
+/* Entrées : Liste de catégorie                                 */
+/*           Adresse de la liste d'emprunts                     */
+/*           Nom de la catégorie                                */
+/*           Numéro du livre                                    */
+/*           Date de retour du livre                            */
+/* Sortie : Code de retour                                      */
+/*          (0 Ok, 1 Livre introuvable, 2 Livre déjà emprunté,  */
+/*          3 Plus de place dans la mémoire)                    */
+/*                                                              */
+/* Fonction d'insertion d'emprunt                               */
+/****************************************************************/
+void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
     liste_livres_t * adr = RechercheLivre(liste, nom, numero);
     
