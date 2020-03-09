@@ -1,11 +1,11 @@
 #include "menu.h"
 
 /****************************************************************/
-/* Procédure : Affichage du menu                                                 */
-/* Entrée    : Aucune                                                */
+/* Procédure : Affichage du menu                                */
+/* Entrée    : Aucune                                           */
 /* Sortie    : Aucune                                           */
 /*                                                              */
-/* Affiche le menu principal                                                             */
+/* Affiche le menu principal                                    */
 /****************************************************************/
 
 void AfficherMenu()
@@ -14,12 +14,12 @@ void AfficherMenu()
 }
 
 /****************************************************************/
-/* Procédure : Gestion du choix                                                */
-/* Entrée    : Aucune                                                */
+/* Fonction  : Gestion du choix                                 */
+/* Entrée    : Aucune                                           */
 /* Sortie    : Entier                                           */
 /*                                                              */
-/* Demande à l'utilisateur un entier correspondant à son choix
-   (cf AfficherMenu), et enregistre cette valeur                                                             */
+/* Demande à l'utilisateur un entier correspondant à son choix  */
+/* (cf AfficherMenu), et enregistre cette valeur                */
 /****************************************************************/
 
 int GestionChoix()
@@ -31,14 +31,14 @@ int GestionChoix()
 }
 
 /****************************************************************/
-/* Fonction : Réalisation des emprunts à partir du fichier
-               des emprunts                                                 */
-/* Entrée    : Liste des catégories, adresse de la liste des
-               emprunts, nom du fichier associé                                                 */
-/* Sortie    : Adresse de la liste des emprunts                                           */
+/* Fonction : Réalisation des emprunts à partir du fichier      */
+/*            des emprunts                                      */
+/* Entrée    : Liste des catégories, adresse de la liste des    */
+/*             emprunts, nom du fichier associé                 */
+/* Sortie    : Adresse de la liste des emprunts                 */
 /*                                                              */
-/* La procédure met à jour la liste des emprunts
-   en insérant des emprunts à partir du fichier associé                                                             */
+/* La procédure met à jour la liste des emprunts                */
+/* en insérant des emprunts à partir du fichier associé         */
 /****************************************************************/
 
 void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
@@ -84,14 +84,14 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fich
 }
 
 /****************************************************************/
-/* Procédure : Réalisation des rendus à partir du fichier
-               des rendus                                                 */
-/* Entrée    : Liste des catégories, adresse de la liste des
-               emprunts, nom du fichier associé                                                 */
-/* Sortie    : Adresse de la liste des emprunts                                           */
+/* Procédure : Réalisation des rendus à partir du fichier       */
+/*             des rendus                                       */
+/* Entrée    : Liste des catégories, adresse de la liste des    */
+/*               emprunts, nom du fichier associé               */
+/* Sortie    : Adresse de la liste des emprunts                 */
 /*                                                              */
-/* La procédure met à jour la liste des emprunts en 
-   supprimant des emprunts à l'aide du fichier associé                                                             */
+/* La procédure met à jour la liste des emprunts en             */
+/* supprimant des emprunts à l'aide du fichier associé          */
 /****************************************************************/
 
 void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
@@ -177,14 +177,14 @@ long RecupJour(long date)
 }
 
 /****************************************************************/
-/* Procédure : Impression des emprunts dont la date de retour
-               est inférieure à une date passée en paramètre                                                 */
-/* Entrée    : Liste des emprunts, date                                                 */
+/* Procédure : Impression des emprunts dont la date de retour   */
+/*             est inférieure à une date passée en paramètre    */
+/* Entrée    : Liste des emprunts, date                         */
 /* Sortie    : Aucune                                           */
 /*                                                              */
-/* La procédure affiche la catégorie, le numéro et la date
-   de retour des livres qui doivent être rendus avant la date
-   passée en paramètre                                                             */
+/* La procédure affiche la catégorie, le numéro et la date      */
+/* de retour des livres qui doivent être rendus avant la date   */
+/* passée en paramètre                                          */
 /****************************************************************/
 
 void Imprimer(liste_emprunt_t liste_dates, long date)
@@ -199,14 +199,14 @@ void Imprimer(liste_emprunt_t liste_dates, long date)
 }
 
 /****************************************************************/
-/* Procédure : Sauvegarder dans un fichier l'état courant
-               des emprunts                                                 */
-/* Entrée    : Liste des emprunts, fichier                                                 */
+/* Procédure : Sauvegarder dans un fichier l'état courant       */
+/*             des emprunts                                     */
+/* Entrée    : Liste des emprunts, fichier                      */
 /* Sortie    : Aucune                                           */
 /*                                                              */
-/* Dans le fichier passée en paramètre figureront les 
-   différentes catégories, numéros et date de retour des livres
-   actuellement empruntés                                                                */
+/* Dans le fichier passée en paramètre figureront les           */
+/* différentes catégories, numéros et date de retour des livres */
+/* actuellement empruntés                                       */
 /****************************************************************/
 
 void SauvegarderEmprunts(liste_emprunt_t dates, FILE * fichier)
