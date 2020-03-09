@@ -16,7 +16,7 @@
 /*          Code de retour -> 1 si échec de l'ouverture         */
 /*                                                              */
 /* Fonction chargée d'ouvrir un fichier dont le nom et le mode  */
-/* d'ouverture est donné en paramètre et retourne l'adresse     */
+/* d'ouverture sont donnés en paramètre et retourne l'adresse   */
 /* mémoire du fichier ouvert.                                   */
 /****************************************************************/
 FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
@@ -34,7 +34,7 @@ FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
 /* Entrées : Adresse du fichier                                 */
 /* Sortie : Aucune                                              */
 /*                                                              */
-/* Cette procédure lit chaque ligne du fichier et les affiches  */
+/* Cette procédure lit chaque ligne du fichier et les affichent */
 /* sur la sortie standard.                                      */
 /****************************************************************/
 void LireDonnees(FILE * fichier)

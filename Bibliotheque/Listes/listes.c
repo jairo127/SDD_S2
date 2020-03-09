@@ -1,5 +1,13 @@
 #include "listes.h"
 
+/****************************************************************/
+/* Procédure : Affichage de la bibliothèque			*/
+/* Entrée    : Liste d'emprunts					*/
+/* Sortie    : Aucune						*/
+/*								*/
+/* La procédure affiche chaque maillon de la liste d'emprunts   */
+/****************************************************************/
+
 void AfficherBiblio(liste_categories_t biblio)
 {
     liste_categories_t cour = biblio;
