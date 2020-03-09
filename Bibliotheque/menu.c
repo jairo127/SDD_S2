@@ -23,7 +23,7 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fich
 
     if (!emprunts)
     {
-        printf("Erreur, le fichier Emprunts est introuvable\n");
+        printf("Erreur, le fichier %s est introuvable\n", nom_fichier);
     }
     else
     {
@@ -66,7 +66,7 @@ void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier
 
     if (!rendus)
     {
-        printf("Erreur, le fichier Rendus est introuvable\n");
+        printf("Erreur, le fichier %s est introuvable\n", nom_fichier);
     }
     else
     {

@@ -7,7 +7,7 @@ int main(int argc, char * * argv)
 {
     if (argc==1)
     {
-        printf("Compiler avec :\n- Le nom du fichier de la bibliotheque (ex : Livres)\n- Le nom du fichier d'emprunts (ex : Emprunts)\n- Le nom du fichier de rendus (ex : Rendues\n");
+        printf("Compiler avec :\n- Le nom du fichier de la bibliotheque (ex : Livres)\n- Le nom du fichier d'emprunts (ex : Emprunts)\n- Le nom du fichier de rendus (ex : Rendus)\n");
     }
     else
     {
@@ -29,7 +29,7 @@ int main(int argc, char * * argv)
             {
                 AfficherMenu();
                 choix = GestionChoix();
-		system("clear");
+		        system("clear");
                 switch(choix)
                 {
                     case 1:
@@ -37,14 +37,10 @@ int main(int argc, char * * argv)
                     case 2:
                         AfficherDates(dates); break;
                     case 3:
-                        printf("Entrer le nom du fichier d'emprunt (30 carac max)\n");
-                        scanf("%s", nom_fichier);
-                        Emprunter(biblio, &dates, nom_fichier, &code); 
+                        Emprunter(biblio, &dates, argv[2], &code); 
                         break;
                     case 4:
-                        printf("Entrer le nom du fichier de rendus (30 carac max)\n");
-                        scanf("%s", nom_fichier);
-                        Rendre(biblio, &dates, nom_fichier, &code); 
+                        Rendre(biblio, &dates, argv[3], &code); 
                         break;
                     case 5:
                         printf("Entrer une date limite sous le format aaaammjj : ");
