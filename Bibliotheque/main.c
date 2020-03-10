@@ -11,15 +11,15 @@ int main(int argc, char * * argv)
     }
     else
     {
-        int code = 0;
-        int choix = 0;
-        long choix_date;
-        char tmp;
-        char nom_fichier[30];
-        FILE * sauvegarde;
+        int code = 0; // code indiquant le fonctionnement du programme
+        int choix = 0; // choix de l'utilisateur
+        long choix_date; // choix de la date de l'utilisateur pour l'option 5
+        char tmp; // Stockage de la touche "Entrée"
+        char nom_fichier[30]; // nom du fichier de sauvegarde pour l'option 6
+        FILE * sauvegarde; // fichier de sauvegarde pour l'option 6
 
-        liste_categories_t biblio = NULL;
-        liste_emprunt_t dates = NULL;
+        liste_categories_t biblio = NULL; // bibliotheque
+        liste_emprunt_t dates = NULL; // liste des emprunts
 
         FILE * fichier = OuvrirFichier(argv[1], &code, "r");
         if (!code)
@@ -31,7 +31,7 @@ int main(int argc, char * * argv)
                 {
                     AfficherMenu();
                     choix = GestionChoix();
-		            system("clear");
+		            system("clear"); // Nettoyer l'écran
                     switch(choix)
                     {
                         case 1:
@@ -69,7 +69,7 @@ int main(int argc, char * * argv)
                     }
                     printf("Appuyez sur une entrée pour continuer\n");
                     scanf("%c%*c", &tmp);
-                    system("clear");
+                    system("clear"); // Nettoyer l'écran
                 } while (choix != 7 && !code);
             }
             else

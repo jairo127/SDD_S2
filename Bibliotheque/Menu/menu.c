@@ -24,7 +24,7 @@ void AfficherMenu()
 
 int GestionChoix()
 {
-    int choix;
+    int choix; // entier correspondant au choix de l'utilisateur
     scanf("%d", &choix);
     printf("\n\n");
     return choix;
@@ -43,12 +43,12 @@ int GestionChoix()
 
 void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
 {
-    char ligne[TAILLE_MAX];
-    char nom[4];
-    int numero;
-    long date_retour;
-    FILE * emprunts = fopen(nom_fichier, "r");
-    int code = 0;
+    char ligne[TAILLE_MAX]; // chaine de caractères lue par le fichier
+    char nom[4]; // nom de la catégorie
+    int numero; // numéro du livre
+    long date_retour; // date de retour du livre
+    FILE * emprunts = fopen(nom_fichier, "r"); // fichier d'emprunts à lire
+    int code = 0; // code de retour
 
     if (!emprunts)
     {
@@ -96,12 +96,12 @@ void Emprunter(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fich
 
 void Rendre(liste_categories_t biblio, liste_emprunt_t * dates, char nom_fichier[30])
 {
-    char ligne[TAILLE_MAX];
-    char nom[4];
-    int numero;
-    long date_retour;
-    FILE * rendus = fopen(nom_fichier, "r");
-    int code;
+    char ligne[TAILLE_MAX]; // chaine de caractères lue par le fichier
+    char nom[4]; // nom de la catégorie
+    int numero; // numéro du livre
+    long date_retour; // date de retour du livre
+    FILE * rendus = fopen(nom_fichier, "r"); // fichier de rendus à lire
+    int code; // code de retour
 
     if (!rendus)
     {
@@ -189,7 +189,7 @@ long RecupJour(long date)
 
 void Imprimer(liste_emprunt_t liste_dates, long date)
 {
-    liste_emprunt_t cour = liste_dates;
+    liste_emprunt_t cour = liste_dates; // pointeur de parcours de la liste des emprunts
     printf("Liste des livres à rendre avant le %ld %ld %ld :\n", RecupJour(date), RecupMois(date), RecupAnnee(date));
     while (cour && cour->date_retour <= date)
     {
@@ -211,7 +211,7 @@ void Imprimer(liste_emprunt_t liste_dates, long date)
 
 void SauvegarderEmprunts(liste_emprunt_t dates, FILE * fichier)
 {
-    liste_emprunt_t cour = dates;
+    liste_emprunt_t cour = dates; // pointeur de parcours de la listes des emprunts
 
     while(cour)
     {
