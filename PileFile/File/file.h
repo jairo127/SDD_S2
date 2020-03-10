@@ -2,12 +2,12 @@
 /* Fichier "file.c"                     	*/
 /* Valentin Guien - William Garrier     	*/
 /*											*/
-/* Contient les déclaration des fonctions	*/
+/* Contient lesè déclaration des fonctions	*/
 /* et la structure de données de la file    */
 /********************************************/
 
-#ifndef FILE
-#define FILE
+#ifndef FILE_H
+#define FILE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,11 +45,21 @@ typedef struct file
 File_t * 	InitFile(int);
 
 /************************************************/
-/* Procédure : Libération de la File 		 	*/
+/* Procédure : Affichage de la File 		 	*/
+/* Entrée : File							 	*/
+/* Sortie : Aucun 								*/
+/*												*/
+/* Affiche la file passée en paramètre  		*/
+/* (sert pour le débuggage) 					*/
+/************************************************/
+void 		AfficherFile(File_t);
+
+/************************************************/
+/* Procédure : Libération de la File 		 è	*/
 /* Entrée : File à libérer (par adresse)	 	*/
 /* Sortie : Aucune					 			*/
 /*												*/
-/* Libére entièrement l'espace mémoire lié 		*/
+/* Libère entièrement l'espace mémoire lié 		*/
 /* à la file à libérer							*/
 /************************************************/
 void 		LibererFile(File_t **);
@@ -66,27 +76,27 @@ int 		EstVide(File_t);
 
 /************************************************/
 /* Procédure : Enfiler un élément dans la file 	*/
-/* Entrée : - File concernée (par copie)		*/
+/* Entrée : - Adresse de la file concernée 		*/
 /* 			- Valeur/Variable à enfiler 		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succès de l'enfilement  		*/
+/* 			- 0 : Succés de l'enfilement  		*/
 /*			- 1 : Ne peut pas enfiler			*/
 /*												*/
 /* Enfile une variable dans la file 			*/
 /************************************************/
-int 		Enfiler(File_t, std_type_t);
+int 		Enfiler(File_t *, std_type_t);
 
 /************************************************/
 /* Procédure : Défiler un élément de la file 	*/
-/* Entrée : - File concernée (par copie)		*/
+/* Entrée : - Adresse de la file concernée      */
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succès du défilement 	 		*/
+/* 			- 0 : Succés du défilement 	 		*/
 /*			- 2 : Ne peut pas défiler			*/
 /*			Adresse de la valeur/variable 		*/
 /*			(NULL si impossibilité de défiler)  */
 /*												*/
 /* Défile une variable de la file 				*/
 /************************************************/
-int 		Defiler(File_t, std_type_t *);
+int 		Defiler(File_t *, std_type_t *);
 
 #endif
