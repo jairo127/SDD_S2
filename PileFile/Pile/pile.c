@@ -18,7 +18,7 @@
 /************************************************/
 Pile_t * 	InitPile(int taille)
 {
-	Pile_t * pile = (Pile_t *) malloc(sizeof(Pile_t));
+	Pile_t * pile = (Pile_t *) malloc(sizeof(Pile_t)); // Pile
 	
 	if (pile)
 	{
@@ -79,7 +79,7 @@ int 		EstVide(Pile_t pile)
 /************************************************/
 int 		Empiler(Pile_t * pile, std_type_t var)
 {
-	int code = 1;
+	int code = 1; // Code de retour
 
 	if (pile->sommet < pile->capacite - 1)
 	{
@@ -103,7 +103,7 @@ int 		Empiler(Pile_t * pile, std_type_t var)
 /************************************************/
 int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 {
-	int code = 2;
+	int code = 2; // Code de retour
 
 	if (!EstVide(*pile))
 	{
@@ -126,7 +126,7 @@ int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 /************************************************/
 void		AfficherPile(Pile_t pile)
 {
-	int i;
+	int i; // Compteur de boucle
 
 	for(i=0 ; i<=pile.sommet ; i++)
 	{
