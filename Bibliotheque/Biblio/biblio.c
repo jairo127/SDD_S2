@@ -21,7 +21,7 @@
 /****************************************************************/
 FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
 {
-    FILE * fichier = fopen(nom_fichier,mode);
+    FILE * fichier = fopen(nom_fichier,mode); // fichier de retour
     if (!fichier)
     {
         *code = 1;
@@ -39,8 +39,7 @@ FILE * OuvrirFichier (char * nom_fichier, int * code, char * mode)
 /****************************************************************/
 void LireDonnees(FILE * fichier)
 {
-    char ligne[TAILLE_MAX];
-
+    char ligne[TAILLE_MAX]; // chaine de caractères lue dans un fichier
     while (!feof(fichier))
     {
         fgets(ligne, TAILLE_MAX, fichier);

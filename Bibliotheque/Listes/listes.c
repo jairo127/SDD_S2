@@ -10,8 +10,8 @@
 
 void AfficherBiblio(liste_categories_t biblio)
 {
-    liste_categories_t cour = biblio;
-    liste_livres_t cour_l;
+    liste_categories_t cour = biblio; //pointeur de parcours de la bibliotheque
+    liste_livres_t cour_l; //pointeur de parcours sur une liste de livres d'un maillon
     if (cour)
     {
     	do
@@ -53,7 +53,7 @@ void AfficherBiblio(liste_categories_t biblio)
 
 void InsererApresAdr(liste_livres_t * prec, int numero, char * titre, int * code)
 {
-    livres_t * maillon;
+    livres_t * maillon; // maillon qui va être inséré
     maillon = (livres_t *) malloc(sizeof(livres_t));
 
     if (maillon != NULL)
@@ -89,7 +89,7 @@ void InsererApresAdr(liste_livres_t * prec, int numero, char * titre, int * code
 
 void InsererEnTete(liste_categories_t * biblio, char * nom, liste_livres_t liste_livres, int * code)
 {
-    liste_categories_t maillon = (liste_categories_t) malloc(sizeof(categories_t));
+    liste_categories_t maillon = (liste_categories_t) malloc(sizeof(categories_t)); //maillon à insérer
     if (maillon != NULL)
     {
         strcpy(maillon->nom,nom);
@@ -120,12 +120,12 @@ void InsererEnTete(liste_categories_t * biblio, char * nom, liste_livres_t liste
 
 void RemplirListe(FILE * fichier, liste_categories_t * biblio, int * code)
 {
-    char nom[4];
-    liste_livres_t liste_livres;
-    liste_livres_t * cour_l;
-    char ligne[TAILLE_MAX];
-    int nombre_livres, numero_livre, i;
-    char nom_livre[11];
+    char nom[4]; //nom de la catégorie
+    liste_livres_t liste_livres; //liste de livres de la catégorie
+    liste_livres_t * cour_l; //pointeur de parcours de la liste de livres
+    char ligne[TAILLE_MAX]; // chaîne de caractères lue dans le fichier
+    int nombre_livres, numero_livre, i; //nombre de livres de la catégorie ; numéro de livre ; compteur de boucle
+    char nom_livre[11]; // titre du livre
 
     fgets(ligne, TAILLE_MAX, fichier); //Duplication de code nécessaire pour faire fonction feof                           
 
@@ -163,8 +163,8 @@ void RemplirListe(FILE * fichier, liste_categories_t * biblio, int * code)
 
 void LibererListeLivre(liste_livres_t livres)
 {
-    liste_livres_t cour = livres;
-    liste_livres_t tmp;
+    liste_livres_t cour = livres; // pointeur de parcours de la liste de livres
+    liste_livres_t tmp; // pointeur pour stocker temporairement le maillon à libérer
     while (cour)
     {
         tmp = cour;
@@ -185,8 +185,8 @@ void LibererListeLivre(liste_livres_t livres)
 
 void LibererBibliotheque(liste_categories_t biblio)
 {
-    liste_categories_t cour = biblio;
-    liste_categories_t tmp;
+    liste_categories_t cour = biblio; // pointeur de parcours de la liste des catégories
+    liste_categories_t tmp; // pointeur pour stocker temporairement le maillon à libérer
     while (cour)
     {
         tmp = cour;

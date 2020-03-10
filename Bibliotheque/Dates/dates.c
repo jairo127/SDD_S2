@@ -18,7 +18,7 @@
 /****************************************************************/
 void AfficherDates (liste_emprunt_t dates)
 {
-    emprunt_t * cour = dates;
+    emprunt_t * cour = dates; // pointeur de parcours de la liste des emprunts
     if (cour) 
     {
     	do
@@ -44,7 +44,7 @@ void AfficherDates (liste_emprunt_t dates)
 /****************************************************************/
 liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 {
-    liste_emprunt_t * prec;
+    liste_emprunt_t * prec; // pointeur de parcours de la liste des emprunts
     prec = dates;
     while(*prec != NULL && date_retour > (*prec)->date_retour)
     {
@@ -67,8 +67,8 @@ liste_emprunt_t * RechercheEmprunt(liste_emprunt_t * dates, long date_retour)
 /****************************************************************/
 liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int numero)
 {
-    liste_categories_t cour = biblio;
-    liste_livres_t * prec = NULL;
+    liste_categories_t cour = biblio; // pointeur de parcours de la liste des catégories
+    liste_livres_t * prec = NULL; // pointeur de parcours de la liste des livres associée à la catégorie
     while (cour != NULL && strcmp(cour-> nom, nom) != 0)
     {
         cour = cour->suiv;
@@ -101,8 +101,7 @@ liste_livres_t * RechercheLivre(liste_categories_t biblio, char nom[4], int nume
 /****************************************************************/
 void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
-    liste_livres_t * adr = RechercheLivre(liste, nom, numero);
-    
+    liste_livres_t * adr = RechercheLivre(liste, nom, numero); // pointeur de la cellule correspondant au livre que l'on veut insérer
     if (*adr && (*adr)->numero == numero)
     {
         if ((*adr)->disponible == 1) 
@@ -110,7 +109,7 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
             emprunt_t * maillon = (emprunt_t *) malloc(sizeof(emprunt_t));
             if (maillon)
             {
-                liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour);
+                liste_emprunt_t * ptr = RechercheEmprunt(dates, date_retour); // pointeur de la cellule qui va être juste après celle que l'on va insérer
 
                 strcpy(maillon->nom, nom);
 		        maillon->numero = numero;
@@ -155,9 +154,9 @@ void InsererEmprunt(liste_categories_t liste, liste_emprunt_t * dates, char nom[
 
 void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char nom[4], int numero, long date_retour, int * code)
 {
-    emprunt_t * tmp;
+    emprunt_t * tmp; // pointeur temporaire de la cellule que l'on va libérer
 
-    liste_livres_t * adr = RechercheLivre(liste, nom, numero);
+    liste_livres_t * adr = RechercheLivre(liste, nom, numero); // pointeur de la cellule correspondant au livre que l'on va emprunté
 
     if (*adr && (*adr) -> numero == numero)
     {
@@ -201,8 +200,8 @@ void SupprimerEmprunt (liste_categories_t liste, liste_emprunt_t * dates, char n
 
 void LibererEmprunts(liste_emprunt_t dates)
 {
-    liste_emprunt_t cour = dates;
-    liste_emprunt_t tmp;
+    liste_emprunt_t cour = dates; // pointeur de parcours de la liste des emprunts
+    liste_emprunt_t tmp; // pointeur temporaire de la cellule que l'on va libérer
     while (cour)
     {
         tmp = cour;
