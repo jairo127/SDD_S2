@@ -40,7 +40,7 @@ typedef struct pile
 /* Initialise une nouvelle pile de taille 		*/
 /* passée en paramètre 							*/
 /************************************************/
-Pile_t * 	InitPile(int);
+Pile_t * 	InitPile(const int);
 
 /************************************************/
 /* Procédure : Libération de la Pile 		 	*/
@@ -60,7 +60,7 @@ void 		LibererPile(Pile_t **);
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(Pile_t);
+int 		EstVide(const Pile_t);
 
 /************************************************/
 /* Procédure : Empiler un élément dans la pile 	*/
@@ -96,6 +96,6 @@ int 		Depiler(Pile_t *, std_type_t *);
 /* de bas en haut (utilisé seulement pour du 	*/
 /* débug)										*/
 /************************************************/
-void		AfficherPile(Pile_t);
+void		AfficherPile(const Pile_t);
 
 #endif

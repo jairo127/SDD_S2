@@ -152,6 +152,8 @@ static void test_vide_pile(void ** frame)
 
 /********************************************/
 /* Test cas d'erreur empilement pile pleine	*/
+/* Attention : test fonctionnel quand il 	*/
+/* n'y a pas de realloc dans Empiler		*/
 /********************************************/
 static void test_empilement_pile_pleine(void ** frame)
 {

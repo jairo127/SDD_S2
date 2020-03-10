@@ -16,7 +16,7 @@
 /* Initialise une nouvelle pile de taille 		*/
 /* passée en paramétre 							*/
 /************************************************/
-Pile_t * 	InitPile(int taille)
+Pile_t * 	InitPile(const int taille)
 {
 	Pile_t * pile = (Pile_t *) malloc(sizeof(Pile_t)); // Pile
 	
@@ -62,7 +62,7 @@ void 		LibererPile(Pile_t ** pile)
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(Pile_t pile)
+int 		EstVide(const Pile_t pile)
 {
 	return (pile.sommet == -1);
 }
@@ -122,9 +122,9 @@ int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 /*												*/
 /* Affiche les éléments présents dans la pile 	*/
 /* de bas en haut (utilisé seulement pour du 	*/
-/* débug)										*/
+/* débug et quand la pile utilise des int)		*/
 /************************************************/
-void		AfficherPile(Pile_t pile)
+void		AfficherPile(const Pile_t pile)
 {
 	int i; // Compteur de boucle
 
