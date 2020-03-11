@@ -150,13 +150,95 @@ static void test_defilement_file(void ** frame)
 	free(file);
 }
 
+/********************************************/
+/* Test cas partiuliers enfilement 			*/
+/* et défilement (pas de realloc)			*/
+/********************************************/
+static void test_specialcase_file(void ** frame)
+{
+	File_t * file = InitFile(2); // File
+	int code = -1; 				 // Code de retour
+	std_type_t var; 			 // Variable de stockage
+
+	// Tests de bonne initialisation de la file
+	assert_non_null(file);
+	assert_int_equal(file->capacite, 2);
+	assert_int_equal(file->debut, -1);
+	assert_int_equal(file->fin, -1);
+	assert_non_null(file->base);
+
+	// Si la file a bien été initialisée
+	if (file != NULL)
+	{
+		// Tests d'enfilement d'un élément dans la File
+		code = Enfiler(file, 5);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, 0);
+		assert_int_equal(file->fin, 0);
+		assert_int_equal((file->base)[file->debut], 5);
+
+		// Tests d'enfilement d'un élément dans la File
+		code = Enfiler(file, 4);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, 0);
+		assert_int_equal(file->fin, 1);
+		assert_int_equal((file->base)[(file->debut)+1], 4);
+
+		// Tests erreur enfilement
+		code = Enfiler(file, 3);
+		assert_int_equal(code, 1);
+		assert_int_equal(file->debut, 0);
+		assert_int_equal(file->fin, 1);
+		assert_int_equal((file->base)[(file->debut)+1], 4);
+
+		// Tests de défilement de la File
+		code = Defiler(file, &var);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, 1);
+		assert_int_equal(file->fin, 1);
+		assert_int_equal((file->base)[file->debut], 4);
+		assert_int_equal(var, 5);
+
+		// Tests enfilement avant le début
+		code = Enfiler(file, 3);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, 1);
+		assert_int_equal(file->fin, 0);
+		assert_int_equal((file->base)[file->fin], 3);
+
+		// Tests erreur enfilement fin avant debut
+		code = Enfiler(file, 2);
+		assert_int_equal(code, 1);
+
+		// Tests de défilement de la File
+		code = Defiler(file, &var);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, 0);
+		assert_int_equal(file->fin, 0);
+		assert_int_equal((file->base)[file->debut], 3);
+		assert_int_equal(var, 4);
+
+		// tests de défilement du dernie élément de la file
+		code = Defiler(file, &var);
+		assert_int_equal(code, 0);
+		assert_int_equal(file->debut, -1);
+		assert_int_equal(file->fin, -1);
+		assert_int_equal(var, 3);
+	}
+
+	// Libération de l'espace mémoire de la file
+	free(file->base);
+	free(file);
+}
+
 int main(void)
 {
 	const struct CMUnitTest tests[] = {
         cmocka_unit_test(test_init_file),
         cmocka_unit_test(test_free_file),
         cmocka_unit_test(test_enfilement_file),
-        cmocka_unit_test(test_defilement_file)
+        cmocka_unit_test(test_defilement_file),
+        cmocka_unit_test(test_specialcase_file)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
