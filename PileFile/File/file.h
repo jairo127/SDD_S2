@@ -42,7 +42,7 @@ typedef struct file
 /* Initialise une nouvelle file de taille 		*/
 /* passée en paramètre 							*/
 /************************************************/
-File_t * 	InitFile(int);
+File_t * 	InitFile(const int);
 
 /************************************************/
 /* Procédure : Affichage de la File 		 	*/
@@ -52,7 +52,7 @@ File_t * 	InitFile(int);
 /* Affiche la file passée en paramètre  		*/
 /* (sert pour le débuggage) 					*/
 /************************************************/
-void 		AfficherFile(File_t);
+void 		AfficherFile(const File_t);
 
 /************************************************/
 /* Procédure : Libération de la File 		 è	*/
@@ -72,7 +72,7 @@ void 		LibererFile(File_t **);
 /*												*/
 /* Renvoie Vrai si la file est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(File_t);
+int 		EstVide(const File_t);
 
 /************************************************/
 /* Procédure : Enfiler un élément dans la file 	*/

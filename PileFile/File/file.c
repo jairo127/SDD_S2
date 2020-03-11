@@ -16,7 +16,7 @@
 /* Initialise une nouvelle file de taille 		*/
 /* passée en paramètre 							*/
 /************************************************/
-File_t * 	InitFile(int taille)
+File_t * 	InitFile(const int taille)
 {
 	File_t * file = (File_t *) malloc(sizeof(File_t)); // Adresse de la file
 	if (file)
@@ -46,7 +46,7 @@ File_t * 	InitFile(int taille)
 /* Affiche la file passée en paramètre  		*/
 /* (sert pour le débuggage) 					*/
 /************************************************/
-void 		AfficherFile(File_t file)
+void 		AfficherFile(const File_t file)
 {
 	int i; // variable de parcours de la file
 	int nb_elem; // nombre d'éléments dans la file. Vaut -1 si la file est vide
@@ -88,7 +88,7 @@ void 		LibererFile(File_t ** file)
 /*												*/
 /* Renvoie Vrai si la file est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(File_t file)
+int 		EstVide(const File_t file)
 {
 	return (file.debut == -1 && file.fin == -1);
 }
