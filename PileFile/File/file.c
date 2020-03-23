@@ -88,7 +88,7 @@ void 		LibererFile(File_t ** file)
 /*												*/
 /* Renvoie Vrai si la file est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(const File_t file)
+int 		EstVideFile(const File_t file)
 {
 	return (file.debut == -1 && file.fin == -1);
 }
@@ -113,7 +113,7 @@ int 		Enfiler(File_t * file, std_type_t var)
 	}
 	else
 	{
-		if (EstVide(*file)) // Si la file est vide
+		if (EstVideFile(*file)) // Si la file est vide
 		{
 			file -> debut = 0;
 		}
@@ -139,7 +139,7 @@ int 		Defiler(File_t * file, std_type_t * var)
 {
 	int code = 0; // Code de retour
 
-	if (EstVide(*file)) // Si la file est vide
+	if (EstVideFile(*file)) // Si la file est vide
 	{
 		code = 2;
 	}

@@ -72,7 +72,7 @@ void 		LibererFile(File_t **);
 /*												*/
 /* Renvoie Vrai si la file est vide sinon Faux	*/
 /************************************************/
-int 		EstVide(const File_t);
+int 		EstVideFile(const File_t);
 
 /************************************************/
 /* Procédure : Enfiler un élément dans la file 	*/
