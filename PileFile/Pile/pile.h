@@ -60,7 +60,11 @@ void 		LibererPile(Pile_t **);
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
+<<<<<<< HEAD
 int 		EstVide(const Pile_t);
+=======
+int 		EstVidePile(Pile_t);
+>>>>>>> TP2_Files
 
 /************************************************/
 /* Procédure : Empiler un élément dans la pile 	*/
@@ -78,7 +82,7 @@ int 		Empiler(Pile_t *, std_type_t);
 /* Procédure : Dépiler un élément de la pile 	*/
 /* Entrée : - Pile concernée (par adresse)		*/
 /* Sortie : Code de retour					 	*/
-/* 			- 0 : Succès de l'empilement 		*/
+/* 			- 0 : Succès du dépilement 			*/
 /*			- 2 : Ne peut pas dépiler			*/
 /*			Adresse de la valeur/variable 		*/
 /*			(NULL si impossibilité de dépiler)  */
