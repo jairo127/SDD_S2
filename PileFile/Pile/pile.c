@@ -62,11 +62,7 @@ void 		LibererPile(Pile_t ** pile)
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
-<<<<<<< HEAD
-int 		EstVide(const Pile_t pile)
-=======
 int 		EstVidePile(Pile_t pile)
->>>>>>> TP2_Files
 {
 	return (pile.sommet == -1);
 }
@@ -109,11 +105,7 @@ int 		Depiler(Pile_t * pile, std_type_t * adr_var)
 {
 	int code = 2; // Code de retour
 
-<<<<<<< HEAD
-	if (!EstVide(*pile))
-=======
 	if (!EstVidePile(*pile))
->>>>>>> TP2_Files
 	{
 		*adr_var = pile->base [pile->sommet];
 		pile->sommet = pile->sommet - 1;

@@ -71,7 +71,7 @@ static void test_enfilement_file(void ** frame)
 	if (file != NULL)
 	{
 		// Test que la file est bien vide
-		assert_true(EstVide(*file));
+		assert_true(EstVideFile(*file));
 
 		// Tests d'enfilement d'un élément dans la File
 		code = Enfiler(file, 5);
@@ -81,7 +81,7 @@ static void test_enfilement_file(void ** frame)
 		assert_int_equal((file->base)[file->debut], 5);
 
 		// Test que la file n'est pas vide
-		assert_false(EstVide(*file));
+		assert_false(EstVideFile(*file));
 
 		// Tests d'enfilement d'un élément dans la File
 		code = Enfiler(file, 4);
@@ -117,7 +117,7 @@ static void test_defilement_file(void ** frame)
 	if (file != NULL)
 	{
 		// Test que la file est bien vide
-		assert_true(EstVide(*file));
+		assert_true(EstVideFile(*file));
 
 		// Tests d'enfilement d'un élément dans la File
 		code = Enfiler(file, 5);
@@ -127,7 +127,7 @@ static void test_defilement_file(void ** frame)
 		assert_int_equal((file->base)[file->debut], 5);
 
 		// Test que la file n'est pas vide
-		assert_false(EstVide(*file));
+		assert_false(EstVideFile(*file));
 
 		// Tests d'enfilement d'un élément dans la File
 		code = Enfiler(file, 4);

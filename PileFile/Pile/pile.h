@@ -60,11 +60,7 @@ void 		LibererPile(Pile_t **);
 /*												*/
 /* Renvoie Vrai si la pile est vide sinon Faux	*/
 /************************************************/
-<<<<<<< HEAD
-int 		EstVide(const Pile_t);
-=======
 int 		EstVidePile(Pile_t);
->>>>>>> TP2_Files
 
 /************************************************/
 /* Procédure : Empiler un élément dans la pile 	*/

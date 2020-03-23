@@ -133,7 +133,7 @@ static void test_vide_pile(void ** frame)
 	if (pile != NULL)
 	{
 		// Test que la pile est bien vide
-		assert_true(EstVide(*pile));
+		assert_true(EstVidePile(*pile));
 
 		// Tests de bon empilement d'une valeur dans la pile
 		code = Empiler(pile, 5);
@@ -142,7 +142,7 @@ static void test_vide_pile(void ** frame)
 		assert_int_equal((pile->base)[pile->sommet], 5);
 
 		// Test que la pile n'est pas vide
-		assert_false(EstVide(*pile));
+		assert_false(EstVidePile(*pile));
 	}
 
 	// Libération de la mémoire de la pile
