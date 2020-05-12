@@ -50,15 +50,15 @@ arbre_t * CreerArbre(char * chaine)
 	{
 		switch(chaine[i])
 		{
-			case '*' : //descente vers le lv
+			case '*' : 
 				break;
-			case '(' : // on empile le pointeur courant
+			case '(' :
 				break;
-			case ')' : // on remonte
+			case ')' :
 				break;
-			case '+' : // vers le lh
+			case '+' :
 				break;
-			default  : // on ajoute une case
+			default  :
 				Insertion(chaine[i], cour);
 				break;
 		}
