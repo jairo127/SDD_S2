@@ -26,3 +26,43 @@ char * CreerChaine(FILE * fichier)
 
 	return ligne;
 }
+
+void Insertion(std_type_t valeur, arbre_t ** ptr)
+{
+	arbre_t * maillon = (arbre_t *) malloc (sizeof(arbre_t));
+	maillon->lv = NULL; maillon->lh = NULL;
+
+	*ptr = maillon;
+}
+
+
+arbre_t * CreerArbre(char * chaine)
+{
+	Pile_t * pile = InitPile(CAPACITE_MAX);
+
+	arbre_t * arb = NULL;
+	arbre_t ** cour = &arb;
+
+	int n = strlen(chaine);
+	int i;
+
+	for (i=0; i<n; i++)
+	{
+		switch(chaine[i])
+		{
+			case '*' : //descente vers le lv
+				break;
+			case '(' : // on empile le pointeur courant
+				break;
+			case ')' : // on remonte
+				break;
+			case '+' : // vers le lh
+				break;
+			default  : // on ajoute une case
+				Insertion(chaine[i], cour);
+				break;
+		}
+	}
+
+	return arb;
+}

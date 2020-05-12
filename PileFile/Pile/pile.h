@@ -15,9 +15,9 @@
 /************************************************/
 /* Type standard utilisé pour adapter la pile 	*/
 /* à tout type de variable à stocker			*/
-/* Remplacer int par le type voulu				*/
+/* Remplacer char par le type voulu				*/
 /************************************************/
-typedef int std_type_t;
+typedef char std_type_t;
 
 /************************************************/
 /* Structure de données : Pile_t 			 	*/
