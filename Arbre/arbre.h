@@ -18,12 +18,14 @@
 #define TAILLE_MAX 1023 // Longueur max de la notation algebrique indiquee dans le fichier 
 #define CAPACITE_MAX 255 // Capacite max de la pile
 
+typedef char std_type_arbre_t;
+
 typedef struct arbre
 {
-	std_type_t sommet;
+	std_type_arbre_t sommet;
 	struct arbre * lv; // lien vertical
 	struct arbre * lh; // lien horizontal
-} arbre_t;
+} Arbre_t;
 
 
 /****************************************************************/
@@ -38,7 +40,11 @@ typedef struct arbre
 
 char *  CreerChaine(FILE *);
 
-void	Insertion(std_type_t, arbre_t **);
+void	Insertion(std_type_arbre_t, arbre_t **);
+
+arbre_t * CreerArbre(char * chaine);
+
+void      ParcoursArbre(arbre_t *);
 
 
 #endif

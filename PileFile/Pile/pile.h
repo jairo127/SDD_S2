@@ -17,7 +17,7 @@
 /* à tout type de variable à stocker			*/
 /* Remplacer char par le type voulu				*/
 /************************************************/
-typedef char std_type_t;
+typedef char std_type_pile_t;
 
 /************************************************/
 /* Structure de données : Pile_t 			 	*/
@@ -29,7 +29,7 @@ typedef struct pile
 {
 	int 			capacite;
 	int 			sommet;
-	std_type_t 	  *	base;
+	std_type_pile_t 	  *	base;
 } Pile_t;
 
 /************************************************/
@@ -85,7 +85,7 @@ int 		Empiler(Pile_t *, std_type_t);
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t *, std_type_t *);
+int 		Depiler(Pile_t *, std_type_pile_t *);
 
 /************************************************/
 /* Procédure DEBUG : Afficher la pile 			*/
