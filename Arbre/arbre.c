@@ -48,12 +48,12 @@ void ConvertStr(char ** chaine)
 
 void Insertion(std_type_arbre_t valeur, Arbre_t ** ptr)
 {
-	arbre_t * maillon = (arbre_t *) malloc (sizeof(arbre_t));
+	Arbre_t * maillon = (Arbre_t *) malloc (sizeof(Arbre_t));
+	maillon->sommet = valeur;
 	maillon->lv = NULL; maillon->lh = NULL;
 
 	*ptr = maillon;
 }
-
 
 Arbre_t * CreerArbre(char * chaine)
 {
@@ -67,51 +67,61 @@ Arbre_t * CreerArbre(char * chaine)
 
 	for (i=0; i<n; i++)
 	{
+		//printf("%d ", i);
 		switch(chaine[i])
 		{
 			case '*' : // descente vers le lv
+				Empiler(pile, cour);
 				cour = &((*cour)->lv);
+				//printf("lv ");
 				break;
-			case '(' : // empiler
-				Empiler(pile, )
+			case '(' : // on fait rien
+				//printf("rien ");
 				break;
 			case ')' : // depiler
+				Depiler(pile, &cour);
+				//printf("depile ");
 				break;
 			case '+' : // aller sur le lh
+				cour = &((*cour)->lh);
+				//printf("lh ");
 				break;
 			default  : // un element de l'arbre
 				Insertion(chaine[i], cour);
+				printf("%c ", (*cour)->sommet);
 				break;
 		}
 	}
-
+	printf("done !\n");
 	return arb;
+
 }
 
-void ParcoursArbre(arbre_t * arb)
-{
+void ParcoursArbre(Arbre_t * arb)
+{/*
 	Arbre_t * cour = arb;
+	Arbre_t ** prec = &cour;
 	Pile_t * pile = InitPile(CAPACITE_MAX);
 	int fin = 0; //0 : pas fini ; 1 : fini
 	char * caractere;
 
 	while(!fin)
 	{
-		while (cour)
+		while (*cour)
 		{
 			Empiler(pile, cour);
 			cour = cour->lv;
 		}
-		if (EstVidePile(pile))
+		if (EstVidePile(*pile))
 		{
 			fin = 1;
 		}
 		else
 		{
-			Depiler(pile, );
+			Depiler(pile, &cour);
 			printf('%c ',*caractere);
 			cour = cour->lh;
 		}
 	}
-	printf("\n");
+	printf("\n");*/
 }
