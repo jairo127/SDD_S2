@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../Arbre/arbre.h"
 
 /************************************************/
 /* Type standard utilisé pour adapter la pile 	*/
@@ -72,7 +73,7 @@ int 		EstVidePile(Pile_t);
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t *, std_type_t);
+int 		Empiler(Pile_t *, std_type_pile_t);
 
 /************************************************/
 /* Procédure : Dépiler un élément de la pile 	*/

@@ -130,7 +130,7 @@ void		AfficherPile(const Pile_t pile)
 
 	for(i=0 ; i<=pile.sommet ; i++)
 	{
-		printf("%d ", pile.base [i]);
+		printf("%p ", pile.base [i]);
 	}
 	printf("\n");
 }

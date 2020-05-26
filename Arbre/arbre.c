@@ -67,50 +67,43 @@ Arbre_t * CreerArbre(char * chaine)
 
 	for (i=0; i<n; i++)
 	{
-		//printf("%d ", i);
 		switch(chaine[i])
 		{
-			case '*' : // descente vers le lv
+			case '*' : // empiler et descendre vers le lv
 				Empiler(pile, cour);
 				cour = &((*cour)->lv);
-				//printf("lv ");
 				break;
 			case '(' : // on fait rien
-				//printf("rien ");
 				break;
 			case ')' : // depiler
 				Depiler(pile, &cour);
-				//printf("depile ");
 				break;
 			case '+' : // aller sur le lh
 				cour = &((*cour)->lh);
-				//printf("lh ");
 				break;
 			default  : // un element de l'arbre
 				Insertion(chaine[i], cour);
-				printf("%c ", (*cour)->sommet);
 				break;
 		}
 	}
 	printf("done !\n");
+	LibererPile(&pile);
 	return arb;
 
 }
 
 void ParcoursArbre(Arbre_t * arb)
-{/*
-	Arbre_t * cour = arb;
-	Arbre_t ** prec = &cour;
+{
+	Arbre_t ** cour = &arb;
 	Pile_t * pile = InitPile(CAPACITE_MAX);
 	int fin = 0; //0 : pas fini ; 1 : fini
-	char * caractere;
 
 	while(!fin)
 	{
 		while (*cour)
 		{
 			Empiler(pile, cour);
-			cour = cour->lv;
+			cour = &((*cour)->lv);
 		}
 		if (EstVidePile(*pile))
 		{
@@ -119,9 +112,56 @@ void ParcoursArbre(Arbre_t * arb)
 		else
 		{
 			Depiler(pile, &cour);
-			printf('%c ',*caractere);
-			cour = cour->lh;
+			printf("%c ", (*cour)->sommet);
+			cour = &((*cour)->lh);
 		}
 	}
-	printf("\n");*/
+	printf("\n");
+	LibererPile(&pile);
+}
+
+Arbre_t ** RechercheValeur(Arbre_t * arb, std_type_arbre_t valeur)
+{
+	Arbre_t ** cour = &arb;
+	Pile_t * pile = InitPile(CAPACITE_MAX);
+
+	while (*cour && (*cour)->sommet != valeur)
+	{
+		Empiler(pile, cour);
+		cour = &((*cour)->lv);
+		while(!(*cour) && !EstVidePile(*pile))
+		{
+			Depiler(pile, &cour);
+			cour = &((*cour)->lh);
+		}
+	}
+
+	LibererPile(&pile);
+	return cour;
+}
+
+Arbre_t ** Dernier(Arbre_t ** tete)
+{
+	Arbre_t ** prec = tete;
+
+	while (*prec)
+	{
+		prec = &((*prec)->lh);
+	}
+
+	return prec;
+}
+
+int AjouterFils(Arbre_t * arb, std_type_arbre_t valeur_pere, std_type_arbre_t valeur_fils)
+{
+	int ok = 0;
+	Arbre_t ** cour = RechercheValeur(arb, valeur_pere);
+	if (*cour)
+	{
+		Arbre_t ** dern = Dernier(&((*cour)->lv));
+		Insertion(valeur_fils, dern);
+		ok = 1;
+	}
+
+	return ok;
 }

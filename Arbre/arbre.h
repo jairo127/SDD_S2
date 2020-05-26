@@ -33,14 +33,20 @@
 /* fichier et retourne la chaine de caracteres associe			*/
 /****************************************************************/
 
-char *  CreerChaine(FILE *);
+char *    CreerChaine(FILE *);
 
-void	Insertion(std_type_arbre_t, Arbre_t **);
+void	  Insertion(std_type_arbre_t, Arbre_t **);
 
 Arbre_t * CreerArbre(char * chaine);
 
 void      ParcoursArbre(Arbre_t *);
 
-void ConvertStr(char **);
+void	  ConvertStr(char **);
+
+Arbre_t ** RechercheValeur(Arbre_t *, std_type_arbre_t);
+
+Arbre_t ** Dernier(Arbre_t **);
+
+int  	  AjouterFils(Arbre_t *, std_type_arbre_t, std_type_arbre_t);
 
 #endif

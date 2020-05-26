@@ -13,6 +13,6 @@ typedef struct arbre
 	struct arbre * lh; // lien horizontal
 } Arbre_t;
 
-typedef Arbre_t** std_type_pile_t;
+typedef Arbre_t ** std_type_pile_t;
 
 #endif

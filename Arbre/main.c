@@ -9,6 +9,13 @@ int main()
 	ConvertStr(&chaine);
 	printf("%s\n", chaine);
 	arbre = CreerArbre(chaine);
-	//ParcoursArbre(arbre);
+	ParcoursArbre(arbre);
+	AjouterFils(arbre, 'm', 'o');
+	ParcoursArbre(arbre);
+	AjouterFils(arbre, 'b', 'w');
+	ParcoursArbre(arbre);
+	AjouterFils(arbre, 'h', 'j');
+	AjouterFils(arbre, 'a', 'l');
+	ParcoursArbre(arbre);
 	return 0;
 }
