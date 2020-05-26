@@ -140,7 +140,14 @@ Arbre_t ** Dernier(Arbre_t **);
 
 int  	   AjouterFils(Arbre_t *, std_type_arbre_t, std_type_arbre_t);
 
-
+/****************************************************************/
+/* Procedure : Liberation de la mémoire occupee par l'arbre     */
+/* Entree : Adresse du pointeur de l'arbre a liberer  			*/
+/* Sortie : Aucune												*/
+/*																*/
+/* Cette procedure libere la memoire occupee par l'arbre		*/
+/* en effectuant un parcours en profondeur						*/
+/****************************************************************/
 
 void	   LibererArbre(Arbre_t **);
 

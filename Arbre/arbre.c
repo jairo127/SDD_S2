@@ -289,25 +289,43 @@ int AjouterFils(Arbre_t * arb, std_type_arbre_t valeur_pere, std_type_arbre_t va
 	return ok;
 }
 
+/****************************************************************/
+/* Procedure : Liberation de la mémoire occupee par l'arbre     */
+/* Entree : Adresse du pointeur de l'arbre a liberer  			*/
+/* Sortie : Aucune												*/
+/*																*/
+/* Cette procedure libere la memoire occupee par l'arbre		*/
+/* en effectuant un parcours en profondeur						*/
+/****************************************************************/
+
 void LibererArbre(Arbre_t ** arb)
 {
 	Arbre_t ** prec = arb;
 	Arbre_t * temp;
-	File_t * file = InitFile(CAPACITE_MAX);
+	Pile_t * pile = InitPile(CAPACITE_MAX);
+
+	int fin = 0; // 0 : pas fini ; 1 : fini
 
 
-	while(*prec)
+	while(!fin)
 	{
-		Enfiler(file, &((*prec)->lv));
-		temp = *prec;
-		prec = &((*prec)->lh);
-		free(temp);
-		while(!(*prec) && !EstVideFile(*file))
+		while(*prec)
 		{
-			Defiler(file, &prec);
+			Empiler(pile, prec);
+			prec = &((*prec)->lv);
 		}
-
+		if(EstVidePile(*pile))
+		{
+			fin = 1;
+		}
+		else
+		{
+			Depiler(pile, &prec);
+			temp = *prec;
+			prec = &((*prec)->lh);
+			free(temp);
+		}
 	}
 
-	LibererFile(&file);
+	LibererPile(&pile);
 }

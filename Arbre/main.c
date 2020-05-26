@@ -8,7 +8,7 @@ int main()
 	fclose(fichier);
 	AdaptChaine(&chaine);
 	arbre = CreerArbre(chaine);
-	AjouterFils(arbre, 'm', 'o');
+	//AjouterFils(arbre, 'm', 'o');
 	ParcoursArbrePre(arbre);
 	ParcoursArbrePost(arbre);
 	/*AjouterFils(arbre, 'b', 'w');
