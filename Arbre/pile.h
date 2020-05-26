@@ -22,8 +22,8 @@
 /************************************************/
 typedef struct pile
 {
-	int 			capacite;
-	int 			sommet;
+	int 		        	capacite;
+	int 		        	sommet;
 	std_type_pile_t 	  *	base;
 } Pile_t;
 

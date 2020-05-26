@@ -6,11 +6,11 @@ int main()
 	FILE * fichier = fopen("ARBRE_1", "r");
 	char * chaine = CreerChaine(fichier);
 	fclose(fichier);
-	ConvertStr(&chaine);
+	AdaptChaine(&chaine);
 	arbre = CreerArbre(chaine);
 	AjouterFils(arbre, 'm', 'o');
-	/*ParcoursArbre(arbre);
-	AjouterFils(arbre, 'b', 'w');
+	ParcoursArbre(arbre);
+	/*AjouterFils(arbre, 'b', 'w');
 	ParcoursArbre(arbre);
 	AjouterFils(arbre, 'h', 'j');
 	AjouterFils(arbre, 'a', 'l');
