@@ -11,14 +11,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../Arbre/arbre.h"
 
-/************************************************/
-/* Type standard utilisé pour adapter la pile 	*/
-/* à tout type de variable à stocker			*/
-/* Remplacer char par le type voulu				*/
-/************************************************/
-typedef char std_type_pile_t;
+#include "type_arbre.h"
 
 /************************************************/
 /* Structure de données : Pile_t 			 	*/
@@ -28,8 +22,8 @@ typedef char std_type_pile_t;
 /************************************************/
 typedef struct pile
 {
-	int 			capacite;
-	int 			sommet;
+	int 		        	capacite;
+	int 		        	sommet;
 	std_type_pile_t 	  *	base;
 } Pile_t;
 

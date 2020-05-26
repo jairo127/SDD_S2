@@ -22,7 +22,7 @@ Pile_t * 	InitPile(const int taille)
 	
 	if (pile)
 	{
-		pile->base = (std_type_t *) malloc(sizeof(std_type_t) * taille);
+		pile->base = (std_type_pile_t *) malloc(sizeof(std_type_pile_t) * taille);
 		
 		if (pile->base)
 		{
@@ -77,7 +77,7 @@ int 		EstVidePile(Pile_t pile)
 /*												*/
 /* Empile une variable dans la pile 			*/
 /************************************************/
-int 		Empiler(Pile_t * pile, std_type_t var)
+int 		Empiler(Pile_t * pile, std_type_pile_t var)
 {
 	int code = 1; // Code de retour
 
@@ -101,7 +101,7 @@ int 		Empiler(Pile_t * pile, std_type_t var)
 /*												*/
 /* Dépile une variable de la pile 				*/
 /************************************************/
-int 		Depiler(Pile_t * pile, std_type_t * adr_var)
+int 		Depiler(Pile_t * pile, std_type_pile_t * adr_var)
 {
 	int code = 2; // Code de retour
 

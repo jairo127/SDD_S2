@@ -12,12 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/************************************************/
-/* Type standard utilisé pour adapter la file 	*/
-/* à tout type de variable à stocker			*/
-/* Remplacer int par le type voulu				*/
-/************************************************/
-typedef int std_type_t;
+#include "type_arbre.h"
+
 
 /************************************************/
 /* Structure de données : File_t 			 	*/
@@ -28,10 +24,10 @@ typedef int std_type_t;
 /************************************************/
 typedef struct file
 {
-	int 			capacite;
-	int 			debut;
-	int 			fin;
-	std_type_t    * base;
+	int 		   	  capacite;
+	int 			  debut;
+	int 			  fin;
+	std_type_file_t * base;
 } File_t;
 
 /************************************************/
@@ -84,7 +80,7 @@ int 		EstVideFile(const File_t);
 /*												*/
 /* Enfile une variable dans la file 			*/
 /************************************************/
-int 		Enfiler(File_t *, std_type_t);
+int 		Enfiler(File_t *, std_type_file_t);
 
 /************************************************/
 /* Procédure : Défiler un élément de la file 	*/
@@ -97,6 +93,6 @@ int 		Enfiler(File_t *, std_type_t);
 /*												*/
 /* Défile une variable de la file 				*/
 /************************************************/
-int 		Defiler(File_t *, std_type_t *);
+int 		Defiler(File_t *, std_type_file_t *);
 
 #endif

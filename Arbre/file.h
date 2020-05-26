@@ -2,11 +2,33 @@
 /* Fichier "file.c"                     	*/
 /* Valentin Guien - William Garrier     	*/
 /*											*/
-/* Contient le comportement des fonctions	*/
-/* définis dans le fichier "file.h"     	*/
+/* Contient les déclaration des fonctions	*/
+/* et la structure de données de la file    */
 /********************************************/
 
-#include "file.h"
+#ifndef FILE_H
+#define FILE_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "type_arbre.h"
+
+
+/************************************************/
+/* Structure de données : File_t 			 	*/
+/* - capacite : Capacité max de la file			*/
+/* - debut : Indice de début de la file 		*/
+/* - fin : Indice de fin de la file 			*/
+/* - base : Zone d'enfilement de la structure 	*/
+/************************************************/
+typedef struct file
+{
+	int 		   	  capacite;
+	int 			  debut;
+	int 			  fin;
+	std_type_file_t * base;
+} File_t;
 
 /************************************************/
 /* Fonction : Initialisation de la File 	 	*/
@@ -16,27 +38,7 @@
 /* Initialise une nouvelle file de taille 		*/
 /* passée en paramètre 							*/
 /************************************************/
-File_t * 	InitFile(const int taille)
-{
-	File_t * file = (File_t *) malloc(sizeof(File_t)); // Adresse de la file
-	if (file)
-	{
-		file->base = (std_type_file_t *) malloc(sizeof(std_type_file_t) * taille);
-		if (file->base)
-		{
-			file->capacite = taille;
-			file->debut = -1;
-			file->fin = -1;
-		}
-		else
-		{
-			free(file);
-			file = NULL;
-		}
-	}
-
-	return file;
-}
+File_t * 	InitFile(const int);
 
 /************************************************/
 /* Procédure : Affichage de la File 		 	*/
@@ -46,39 +48,17 @@ File_t * 	InitFile(const int taille)
 /* Affiche la file passée en paramètre  		*/
 /* (sert pour le débuggage) 					*/
 /************************************************/
-void 		AfficherFile(const File_t file)
-{
-	int i; // variable de parcours de la file
-	int nb_elem; // nombre d'éléments dans la file. Vaut -1 si la file est vide
-	if (file.debut <= file.fin)
-	{
-		nb_elem = file.fin - file.debut + 1;
-	}
-	else
-	{
-		nb_elem = file.debut - file.fin;
-	}
-	for (i=0; i < nb_elem; i++)
-	{
-		printf("%p ", file.base[(file.debut + i) % (file.capacite)]);
-	}
-	printf("\n");
-}
+void 		AfficherFile(const File_t);
 
 /************************************************/
-/* Procédure : Libération de la File 		 	*/
+/* Procédure : Libération de la File 		 è	*/
 /* Entrée : File à libérer (par adresse)	 	*/
 /* Sortie : Aucune					 			*/
 /*												*/
 /* Libère entièrement l'espace mémoire lié 		*/
 /* à la file à libérer							*/
 /************************************************/
-void 		LibererFile(File_t ** file)
-{
-	free ((*file)->base);
-	free (*file);
-	*file = NULL;
-}
+void 		LibererFile(File_t **);
 
 /************************************************/
 /* Fonction : Vérification si la file est vide 	*/
@@ -88,10 +68,7 @@ void 		LibererFile(File_t ** file)
 /*												*/
 /* Renvoie Vrai si la file est vide sinon Faux	*/
 /************************************************/
-int 		EstVideFile(const File_t file)
-{
-	return (file.debut == -1 && file.fin == -1);
-}
+int 		EstVideFile(const File_t);
 
 /************************************************/
 /* Procédure : Enfiler un élément dans la file 	*/
@@ -103,26 +80,7 @@ int 		EstVideFile(const File_t file)
 /*												*/
 /* Enfile une variable dans la file 			*/
 /************************************************/
-int 		Enfiler(File_t * file, std_type_file_t var)
-{
-	int code = 0; // Code de retour
-	
-	if (file->debut == (file->fin +1)%(file->capacite)) // Si la file est pleine
-	{
-		code = 1;
-	}
-	else
-	{
-		if (EstVideFile(*file)) // Si la file est vide
-		{
-			file -> debut = 0;
-		}
-		file -> fin = (file-> fin +1) % (file->capacite);
-		file -> base [file -> fin] = var;
-	}
-
-	return code;
-}
+int 		Enfiler(File_t *, std_type_file_t);
 
 /************************************************/
 /* Procédure : Défiler un élément de la file 	*/
@@ -135,27 +93,6 @@ int 		Enfiler(File_t * file, std_type_file_t var)
 /*												*/
 /* Défile une variable de la file 				*/
 /************************************************/
-int 		Defiler(File_t * file, std_type_file_t * var)
-{
-	int code = 0; // Code de retour
+int 		Defiler(File_t *, std_type_file_t *);
 
-	if (EstVideFile(*file)) // Si la file est vide
-	{
-		code = 2;
-	}
-	else
-	{
-		*var = file -> base [file->debut];
-		if ( file->debut == file -> fin ) // Si la file n'a plus qu'un élément
-		{
-			file -> debut = -1; 
-			file -> fin = -1;
-		}
-		else
-		{
-			file -> debut = (file -> debut + 1) % (file->capacite);
-		}
-	}
-
-	return code;
-}
+#endif
