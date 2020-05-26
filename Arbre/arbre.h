@@ -11,13 +11,14 @@
 
 #include "type_arbre.h"
 #include "pile.h"
+#include "file.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define TAILLE_MAX 1023 // Longueur max de la notation algebrique indiquee dans le fichier 
-#define CAPACITE_MAX 255 // Capacite max de la pile
+#define CAPACITE_MAX 255 // Capacite max de la pile/file
 
 
 

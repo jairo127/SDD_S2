@@ -1,5 +1,5 @@
 CFLAGS = -g -Wall -Wextra
-OBJ = arbre.o pile.o main.o
+OBJ = arbre.o pile.o file.o main.o
 EXEC = run
 
 all: $(EXEC)
@@ -13,7 +13,10 @@ arbre.o : arbre.c arbre.h type_arbre.h
 pile.o : pile.c pile.h type_arbre.h
 	gcc -o pile.o -c pile.c $(CFLAGS)
 
-main.o : main.c arbre.h pile.h type_arbre.h
+file.o : file.c file.h type_arbre.h
+	gcc -o file.o -c file.c $(CFLAGS)
+
+main.o : main.c arbre.h pile.h file.h type_arbre.h
 	gcc -o main.o -c main.c $(CFLAGS)
 	
 clean :

@@ -15,4 +15,6 @@ typedef struct arbre
 
 typedef Arbre_t ** std_type_pile_t;
 
+typedef Arbre_t ** std_type_file_t;
+
 #endif

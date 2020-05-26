@@ -123,20 +123,20 @@ void ParcoursArbre(Arbre_t * arb)
 Arbre_t ** RechercheValeur(Arbre_t * arb, std_type_arbre_t valeur)
 {
 	Arbre_t ** cour = &arb;
-	Pile_t * pile = InitPile(CAPACITE_MAX);
+	File_t * file = InitFile(CAPACITE_MAX);
 
 	while (*cour && (*cour)->sommet != valeur)
 	{
-		Empiler(pile, cour);
-		cour = &((*cour)->lv);
-		while(!(*cour) && !EstVidePile(*pile))
+		Enfiler(file, cour);
+		cour = &((*cour)->lh);
+		while(!(*cour) && !EstVideFile(*file))
 		{
-			Depiler(pile, &cour);
-			cour = &((*cour)->lh);
+			Defiler(file, &cour);
+			cour = &((*cour)->lv);
 		}
 	}
 
-	LibererPile(&pile);
+	LibererFile(&file);
 	return cour;
 }
 

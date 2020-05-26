@@ -15,13 +15,6 @@
 #include "type_arbre.h"
 
 /************************************************/
-/* Type standard utilisé pour adapter la pile 	*/
-/* à tout type de variable à stocker			*/
-/* Remplacer char par le type voulu				*/
-/************************************************/
-//typedef int std_type_pile_t;
-
-/************************************************/
 /* Structure de données : Pile_t 			 	*/
 /* - capacite : Capacité max de la pile			*/
 /* - sommet : Sommet de la pile 				*/
