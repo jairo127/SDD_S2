@@ -72,6 +72,18 @@ Arbre_t *  CreerArbre(char * chaine);
 
 /****************************************************************/
 /* Procedure : Parcours de l'arbre avec impression des sommets  */
+/*			   dans l'ordre prefixe                            */
+/* Entrées : Arbre a parcourir  					       		*/
+/* Sortie : Aucune												*/
+/*																*/
+/* Cette procedure realise le parcours de l'arbre et imprime	*/
+/* les valeurs des sommets selon l'ordre prefixe				*/
+/****************************************************************/
+
+void       ParcoursArbrePre(Arbre_t *);
+
+/****************************************************************/
+/* Procedure : Parcours de l'arbre avec impression des sommets  */
 /*			   dans l'ordre postfixe                            */
 /* Entrées : Arbre a parcourir  					       		*/
 /* Sortie : Aucune												*/
@@ -80,7 +92,7 @@ Arbre_t *  CreerArbre(char * chaine);
 /* les valeurs des sommets selon l'ordre postfixe				*/
 /****************************************************************/
 
-void       ParcoursArbre(Arbre_t *);
+void       ParcoursArbrePost(Arbre_t *);
 
 /****************************************************************/
 /* Fonction : Recherche d'un sommet de l'arbre avec la valeur	*/

@@ -125,6 +125,44 @@ Arbre_t * CreerArbre(char * chaine)
 
 /****************************************************************/
 /* Procedure : Parcours de l'arbre avec impression des sommets  */
+/*			   dans l'ordre prefixe                            */
+/* Entrées : Arbre a parcourir  					       		*/
+/* Sortie : Aucune												*/
+/*																*/
+/* Cette procedure realise le parcours de l'arbre et imprime	*/
+/* les valeurs des sommets selon l'ordre prefixe				*/
+/****************************************************************/
+
+void ParcoursArbrePre(Arbre_t * arb)
+{
+	Arbre_t ** cour = &arb;
+	Pile_t * pile = InitPile(CAPACITE_MAX);
+	int fin = 0; //0 : pas fini ; 1 : fini
+
+	while(!fin)
+	{
+		while (*cour)
+		{
+			printf("%c ", (*cour)->sommet);
+			Empiler(pile, cour);
+			cour = &((*cour)->lv); // descente sur le lv
+		}
+		if (EstVidePile(*pile))
+		{
+			fin = 1;
+		}
+		else
+		{
+			Depiler(pile, &cour);
+			cour = &((*cour)->lh); // aller sur le lh
+		}
+	}
+	printf("\n");
+	LibererPile(&pile);
+}
+
+/****************************************************************/
+/* Procedure : Parcours de l'arbre avec impression des sommets  */
 /*			   dans l'ordre postfixe                            */
 /* Entrées : Arbre a parcourir  					       		*/
 /* Sortie : Aucune												*/
@@ -133,7 +171,7 @@ Arbre_t * CreerArbre(char * chaine)
 /* les valeurs des sommets selon l'ordre postfixe				*/
 /****************************************************************/
 
-void ParcoursArbre(Arbre_t * arb)
+void ParcoursArbrePost(Arbre_t * arb)
 {
 	Arbre_t ** cour = &arb;
 	Pile_t * pile = InitPile(CAPACITE_MAX);
