@@ -62,8 +62,9 @@ Arbre_t * CreerArbre(char * chaine)
 	Arbre_t * arb = NULL;
 	Arbre_t ** cour = &arb;
 
-	int n = strlen(chaine);
-	int i;
+	int n, i;
+
+	n = strlen(chaine);
 
 	for (i=0; i<n; i++)
 	{
@@ -164,4 +165,27 @@ int AjouterFils(Arbre_t * arb, std_type_arbre_t valeur_pere, std_type_arbre_t va
 	}
 
 	return ok;
+}
+
+void LibererArbre(Arbre_t ** arb)
+{
+	Arbre_t ** prec = arb;
+	Arbre_t * temp;
+	File_t * file = InitFile(CAPACITE_MAX);
+
+
+	while(*prec)
+	{
+		Enfiler(file, &((*prec)->lv));
+		temp = *prec;
+		prec = &((*prec)->lh);
+		free(temp);
+		while(!(*prec) && !EstVideFile(*file))
+		{
+			Defiler(file, &prec);
+		}
+
+	}
+
+	LibererFile(&file);
 }
