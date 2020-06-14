@@ -11,13 +11,25 @@
 #define TABLE_H
 
 #define HASH_MAX 29
+#define LONGUEUR_MAX 255
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+typedef struct liste_mots
+{
+	char 			  * mot;
+	int 				occurrence;
+	struct liste_mots * suiv;
+} maillon, *liste_mots_t;   // maillon *  =  liste_mots_t
+
 unsigned int hash_string (const char *str);
 
+
+liste_mots_t * InitialiserTable(void);
+
+void LireMot(FILE *, char *, int *);
 
 #endif
