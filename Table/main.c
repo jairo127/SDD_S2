@@ -15,7 +15,7 @@ int main()
 
 	char mot[LONGUEUR_MAX];
 	int fin = 0;
-	char pio;
+	int code = 0;
 
 	FILE * fichier = fopen("texte","r");
 	while (!feof(fichier))
@@ -27,6 +27,18 @@ int main()
 		}
 	}
 	fclose(fichier);
+
+
+	InsererEnTete(&table_hash[2],"Cassoulet", &code);
+	InsererEnTete(&table_hash[2],"Steak", &code);
+
+	printf("%s\n",table_hash[2]->mot);
+	printf("%s\n",table_hash[2]->suiv->mot);
+
+	printf("%p\n",RechercheMot(table_hash[2],"Cassoulet"));
+	printf("%p\n",RechercheMot(table_hash[2],"Steak"));
+	printf("%p\n",RechercheMot(table_hash[2],"Frite"));
+
 
 	/*char * strr = "Salut";
 	char * str2 = "Coucou";

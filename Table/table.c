@@ -57,3 +57,32 @@ void LireMot(FILE * fichier, char * mot, int * fin)
 		*fin = 1;
 	}
 }
+
+void InsererEnTete(liste_mots_t * liste, char * mot, int * code)
+{
+	maillon * bloc = (maillon *) malloc(sizeof(maillon));
+	if (bloc)
+	{
+		strcpy(bloc->mot, mot);
+		bloc->occurrence = 1;
+
+		bloc->suiv = *liste;
+		*liste = bloc;
+	}
+	else
+	{
+		*code = 1;
+	}
+}
+
+maillon * RechercheMot(liste_mots_t liste, char * mot)
+{
+	maillon * cour = liste;
+
+	while (cour && strcmp(cour->mot,mot))
+	{
+		cour = cour->suiv;
+	}
+
+	return cour;
+}
