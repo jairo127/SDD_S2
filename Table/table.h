@@ -28,16 +28,26 @@ typedef struct liste_mots
 unsigned int hash_string (const char *str);
 
 
-liste_mots_t * InitialiserTable(void);
+liste_mots_t * InitialiserTable(int *);
 
 void LireMot(FILE *, char *, int *);
 
 void InsererEnTete(liste_mots_t *, char *, int *);
 
-maillon * RechercheMot(liste_mots_t *, char *);
+maillon * RechercheMot(liste_mots_t, char *);
 
 void TraiterMot(liste_mots_t **, char *, int *);
 
 void Traitement(liste_mots_t **, FILE *);
+
+void AfficherListeChainee(liste_mots_t);
+
+void AfficherTable(liste_mots_t *);
+
+void LibererListeChainee(liste_mots_t);
+
+void LibererTable(liste_mots_t * table_hash);
+
+
 
 #endif

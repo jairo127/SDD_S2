@@ -22,6 +22,10 @@ int main()
 	}
 	fclose(fichier);
 
+	AfficherTable(table_hash);
+
+	LibererTable(table_hash);
+
 
 
 
