@@ -8,34 +8,30 @@
 
 #include "table.h"
 
-int main()
+int main(int argc, char ** argv)
 {
-	liste_mots_t * table_hash;
-	FILE * fichier = fopen("texte","r");
-	if (fichier)
+	if (argc != 2)
 	{
-		Traitement(&table_hash, fichier);
+		printf("Compiler avec le nom du fichier texte : ./run <text>\n");
 	}
 	else
 	{
-		printf("Erreur d'ouverture du fichier.\n");
+		liste_mots_t * table_hash; //la table de hachage
+		FILE * fichier = fopen(argv[1],"r");
+		if (fichier)
+		{
+			Traitement(&table_hash, fichier); //Initialisation de la table et création à partir du fichier texte.
+		}
+		else
+		{
+			printf("Erreur d'ouverture du fichier.\n");
+		}
+		fclose(fichier);
+
+		AfficherTable(table_hash); //Affichage de la table
+
+		LibererTable(table_hash); //Libération de la table
 	}
-	fclose(fichier);
-
-	AfficherTable(table_hash);
-
-	LibererTable(table_hash);
-
-
-
-
-
-	/*char * strr = "Salut";
-	char * str2 = "Coucou";
-
-	printf("Voici le truc : %d\n", hash_string(strr));
-	printf("Voici la chose : %d\n", hash_string(str2));
-	*/
 
 	return 0;
 }
