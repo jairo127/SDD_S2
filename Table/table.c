@@ -79,10 +79,52 @@ maillon * RechercheMot(liste_mots_t liste, char * mot)
 {
 	maillon * cour = liste;
 
+	
 	while (cour && strcmp(cour->mot,mot))
 	{
 		cour = cour->suiv;
+
 	}
 
 	return cour;
+}
+
+void TraiterMot(liste_mots_t ** table_hash, char * mot, int * code)
+{
+	unsigned int indice = hash_string(mot);
+	liste_mots_t liste = *table_hash[indice];
+
+	maillon * bloc = RechercheMot(liste,mot);
+
+
+	if (bloc)
+	{
+		bloc->occurrence += 1;
+	}
+	else
+	{
+		InsererEnTete(&liste, mot, code);
+	}
+
+}
+
+void Traitement(liste_mots_t ** table_hash, FILE * fichier)
+{
+	char mot[LONGUEUR_MAX];
+	int fin = 0;
+	int code = 0;
+
+	*table_hash = InitialiserTable();
+
+	while (!fin && !code)
+	{
+		LireMot(fichier, mot, &fin);
+
+		TraiterMot(table_hash, mot, &code);
+
+		if (code)
+		{
+			printf("Probleme de lecture d'un mot. Arret\n");
+		}
+	}
 }

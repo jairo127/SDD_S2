@@ -34,6 +34,10 @@ void LireMot(FILE *, char *, int *);
 
 void InsererEnTete(liste_mots_t *, char *, int *);
 
-maillon * RechercheMot(liste_mots_t, char *);
+maillon * RechercheMot(liste_mots_t *, char *);
+
+void TraiterMot(liste_mots_t **, char *, int *);
+
+void Traitement(liste_mots_t **, FILE *);
 
 #endif
